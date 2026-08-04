@@ -1,0 +1,897 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Computer Networks and Cloud Networking &#8212; Systems Administration and Maintenance (SAM10)</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=c73c0f3e"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chap04/ch04';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Compute Infrastructure Administration" href="../chap05/ch05.html" />
+    <link rel="prev" title="Identity, Access Management, and Governance" href="../chap03/ch03.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../_static/cover.svg" class="logo__image only-light" alt="Systems Administration and Maintenance (SAM10) - Home"/>
+    <img src="../_static/cover.svg" class="logo__image only-dark pst-js-only" alt="Systems Administration and Maintenance (SAM10) - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Part I — Foundations</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chap01/ch01.html">Foundations of Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap02/ch02.html">Cloud Computing and Virtualization Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap03/ch03.html">Identity, Access Management, and Governance</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Computer Networks and Cloud Networking</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part II — Infrastructure &amp; Systems Administration</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chap05/ch05.html">Compute Infrastructure Administration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap06/ch06.html">Linux Systems Administration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap07/ch07.html">Storage Administration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap08/ch08.html">Database Administration</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part III — Services, Security &amp; Reliability</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chap09/ch09.html">Web and Application Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap10/ch10.html">Monitoring, Logging, and Performance Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap11/ch11.html">Cloud Security Administration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap12/ch12.html">High Availability, Scalability, and Reliability Engineering</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part IV — Operations, Maintenance &amp; Architecture</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chap13/ch13.html">Backup, Disaster Recovery, and Business Continuity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap14/ch14.html">Systems Maintenance, Automation, and IT Service Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap15/ch15.html">Cloud Architecture, Optimization, and the Well-Architected Framework</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part V — Laboratory Exercises</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../labs/semester-plan.html">SAM10 Semester Plan · AWS Cloud Foundations + Cloud Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../labs/lab00.html">Lab 0 — Course Orientation &amp; Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../labs/lab01.html">Lab 1 — Module 1: Cloud Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../labs/lab02.html">Lab 2 — Module 2: Technology Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../labs/lab03.html">Lab 3 — Module 3: Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../labs/lab04.html">Lab 4 — Module 4: Compute &amp; Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../labs/lab05.html">Lab 5 — Module 5: Networking &amp; Content Delivery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../labs/lab06.html">Lab 6 — Module 6: Databases &amp; Analytics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../labs/lab07.html">Lab 7 — Module 7: Infrastructure as Code (AWS Cloud Operations)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../labs/lab08.html">Lab 8 — Module 8: Monitoring &amp; Observability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../labs/lab09.html">Lab 9 — Module 9: Logging &amp; Auditing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../labs/lab10.html">Lab 10 — Module 10: Incident Response</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../labs/lab11.html">Lab 11 — Module 11: Backup &amp; Disaster Recovery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../labs/lab12.html">Lab 12 — Module 12: Cost Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../labs/lab13.html">Lab 13 — Module 13: Deployment Strategies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../labs/lab14.html">Lab 14 — Module 14: Well-Architected Reviews</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../labs/lab15.html">Lab 15 — Module 15: Automation &amp; DevOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MCO1_AWS_Infrastructure_Deployment.html">MCO1 — AWS Infrastructure Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MCO2_Systems_Administration_Maintenance.html">MCO2 — Systems Administration and Maintenance</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/chap04/ch04.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Computer Networks and Cloud Networking</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-osi-model">The OSI Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-tcp-ip-model">The TCP/IP Model</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tcp-vs-udp">TCP vs. UDP</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#routing">Routing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dns-domain-name-system">DNS (Domain Name System)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#amazon-vpc">Amazon VPC</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vpc-building-blocks">VPC building blocks</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#subnets-route-tables-security-groups">Subnets, Route Tables, Security Groups</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#subnets">Subnets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#route-tables">Route tables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#security-groups-vs-nacls">Security Groups vs. NACLs</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checkpoint">Checkpoint</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sources">Sources</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="computer-networks-and-cloud-networking">
+<h1>Computer Networks and Cloud Networking<a class="headerlink" href="#computer-networks-and-cloud-networking" title="Link to this heading">#</a></h1>
+<section id="learning-objectives">
+<h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Map the <strong>OSI</strong> and <strong>TCP/IP</strong> layers and their protocols.</p></li>
+<li><p>Tell <strong>TCP</strong> from <strong>UDP</strong> and name key ports.</p></li>
+<li><p>Explain <strong>routing</strong> and <strong>DNS</strong>.</p></li>
+<li><p>Build an <strong>Amazon VPC</strong> with <strong>subnets</strong>, <strong>route tables</strong>, <strong>Security Groups</strong>.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="the-osi-model">
+<h2>The OSI Model<a class="headerlink" href="#the-osi-model" title="Link to this heading">#</a></h2>
+<p>The <strong>OSI Reference Model</strong> standardizes seven layers of network function.</p>
+<figure class="align-center" id="id1">
+<a class="reference internal image-reference" href="../_images/osi.svg"><img alt="../_images/osi.svg" src="../_images/osi.svg" style="width: 70%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 8 </span><span class="caption-text">OSI seven layers, from the host (top) down to the physical medium (bottom).</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Layer</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Data unit</p></th>
+<th class="head"><p>Protocols / examples</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>Application</p></td>
+<td><p>data</p></td>
+<td><p>HTTP, HTTPS, SMTP, FTP, DNS</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>Presentation</p></td>
+<td><p>data</p></td>
+<td><p>TLS, JPEG, encryption</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>Session</p></td>
+<td><p>data</p></td>
+<td><p>session setup (NetBIOS)</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>Transport</p></td>
+<td><p><strong>Segment</strong></p></td>
+<td><p><strong>TCP / UDP</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>Network</p></td>
+<td><p><strong>Packet</strong></p></td>
+<td><p><strong>IP, ICMP</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>Data Link</p></td>
+<td><p><strong>Frame</strong></p></td>
+<td><p>Ethernet, WiFi (MAC)</p></td>
+</tr>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>Physical</p></td>
+<td><p>bit</p></td>
+<td><p>cable, voltage, radio</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Memory aid</strong>: <em>All People Seem To Need Data Processing</em> (layers 7→1). Upper three = host;
+lower four = media.</p>
+</section>
+<hr class="docutils" />
+<section id="the-tcp-ip-model">
+<h2>The TCP/IP Model<a class="headerlink" href="#the-tcp-ip-model" title="Link to this heading">#</a></h2>
+<figure class="align-center" id="id2">
+<a class="reference internal image-reference" href="../_images/tcpip.png"><img alt="../_images/tcpip.png" src="../_images/tcpip.png" style="width: 80%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 9 </span><span class="caption-text">TCP/IP collapses to four layers: Application, Transport, Internet, Link.</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>TCP/IP layer</p></th>
+<th class="head"><p>Protocols</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Application</strong></p></td>
+<td><p>HTTP/S, DNS, SSH, SMTP, FTP</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Transport</strong></p></td>
+<td><p>TCP (reliable), UDP (fast)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Internet</strong></p></td>
+<td><p>IP, ICMP, ARP</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Link</strong></p></td>
+<td><p>Ethernet, WiFi</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="tcp-vs-udp">
+<h3>TCP vs. UDP<a class="headerlink" href="#tcp-vs-udp" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Property</p></th>
+<th class="head"><p>TCP</p></th>
+<th class="head"><p>UDP</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Connection</p></td>
+<td><p>connection-oriented (3-way handshake)</p></td>
+<td><p>connectionless</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ordering/reliability</p></td>
+<td><p>yes</p></td>
+<td><p>no</p></td>
+</tr>
+<tr class="row-even"><td><p>Typical use</p></td>
+<td><p>web, SSH, email</p></td>
+<td><p>DNS, VoIP, streaming, gaming</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Well-known ports</strong>: 22 (SSH), 53 (DNS), 80 (HTTP), 443 (HTTPS), 3306 (MySQL).</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="routing">
+<h2>Routing<a class="headerlink" href="#routing" title="Link to this heading">#</a></h2>
+<p>When hosts differ in network, a <strong>router</strong> forwards packets using <strong>routing tables</strong> + logical
+addresses.</p>
+<ul class="simple">
+<li><p><strong>Default gateway / route</strong> (<code class="docutils literal notranslate"><span class="pre">0.0.0.0/0</span></code>) catches unmatched destinations.</p></li>
+<li><p><strong>CIDR</strong> <code class="docutils literal notranslate"><span class="pre">10.0.0.0/16</span></code> means the first 16 bits are the network portion.</p></li>
+<li><p><strong>Static routing</strong> (manual) vs. <strong>dynamic</strong> (OSPF, BGP) vs. <strong>policy-based</strong>.</p></li>
+</ul>
+<div class="note docutils">
+<p>Host A (10.0.1.5) → default gateway → routers → Host B network → Host B (10.0.2.8)</p>
+</div>
+</section>
+<hr class="docutils" />
+<section id="dns-domain-name-system">
+<h2>DNS (Domain Name System)<a class="headerlink" href="#dns-domain-name-system" title="Link to this heading">#</a></h2>
+<p><strong>DNS</strong> maps human names to IPs. It’s a distributed, hierarchical, redundant database.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Recursive</span> <span class="n">resolver</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="n">root</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="o">.</span><span class="n">com</span> <span class="n">TLD</span> <span class="n">servers</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="n">authoritative</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">IP</span>
+</pre></div>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Record</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>A</strong></p></td>
+<td><p>IPv4 address</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>AAAA</strong></p></td>
+<td><p>IPv6 address</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>CNAME</strong></p></td>
+<td><p>alias</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>MX</strong></p></td>
+<td><p>mail server</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>NS</strong></p></td>
+<td><p>nameservers</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>TXT</strong></p></td>
+<td><p>text (SPF/DKIM)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>PTR</strong></p></td>
+<td><p>reverse (IP→name)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<hr class="docutils" />
+<section id="amazon-vpc">
+<h2>Amazon VPC<a class="headerlink" href="#amazon-vpc" title="Link to this heading">#</a></h2>
+<p>A <strong>VPC</strong> is your logically-isolated virtual network in AWS: define a CIDR, subnets, route
+tables, gateways, and firewalls.</p>
+<figure class="align-center" id="id3">
+<a class="reference internal image-reference" href="../_images/vpc.svg"><img alt="../_images/vpc.svg" src="../_images/vpc.svg" style="width: 90%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 10 </span><span class="caption-text">VPC with a public subnet (to IGW) and a private subnet (to NAT), guarded by SG/NACL.</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<section id="vpc-building-blocks">
+<h3>VPC building blocks<a class="headerlink" href="#vpc-building-blocks" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Component</p></th>
+<th class="head"><p>Role</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>CIDR</strong></p></td>
+<td><p>the IP range, e.g., <code class="docutils literal notranslate"><span class="pre">10.0.0.0/16</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Subnet</strong></p></td>
+<td><p>a slice/ AZ of the CIDR (public/private)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Internet Gateway (IGW)</strong></p></td>
+<td><p>egress to internet</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>NAT Gateway</strong></p></td>
+<td><p>private subnets reach internet (one-way)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Route Table</strong></p></td>
+<td><p>where traffic for each subnet goes</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="subnets-route-tables-security-groups">
+<h2>Subnets, Route Tables, Security Groups<a class="headerlink" href="#subnets-route-tables-security-groups" title="Link to this heading">#</a></h2>
+<section id="subnets">
+<h3>Subnets<a class="headerlink" href="#subnets" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Public subnet</strong>: route to IGW → instances get a public IP.</p></li>
+<li><p><strong>Private subnet</strong>: no IGW route; outbound via <strong>NAT Gateway</strong> (or a proxy).</p></li>
+<li><p>One subnet per <strong>AZ</strong>; subnets do not span AZs.</p></li>
+</ul>
+</section>
+<section id="route-tables">
+<h3>Route tables<a class="headerlink" href="#route-tables" title="Link to this heading">#</a></h3>
+<p>A table of <strong>routes</strong> (destination CIDR + target). Each subnet binds to one route table;
+the <strong>local route</strong> (the VPC CIDR) is always present. <code class="docutils literal notranslate"><span class="pre">0.0.0.0/0</span></code> → IGW for public,
+→ NAT for private.</p>
+</section>
+<section id="security-groups-vs-nacls">
+<h3>Security Groups vs. NACLs<a class="headerlink" href="#security-groups-vs-nacls" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Feature</p></th>
+<th class="head"><p><strong>Security Group</strong></p></th>
+<th class="head"><p><strong>Network ACL</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Layer</p></td>
+<td><p>ENI/instance</p></td>
+<td><p>subnet</p></td>
+</tr>
+<tr class="row-odd"><td><p>Stateful?</p></td>
+<td><p>yes</p></td>
+<td><p>no</p></td>
+</tr>
+<tr class="row-even"><td><p>Rules</p></td>
+<td><p>allow-only</p></td>
+<td><p>allow + deny</p></td>
+</tr>
+<tr class="row-odd"><td><p>Evaluation</p></td>
+<td><p>per-port/protocol</p></td>
+<td><p>ordered by rule number</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Both are <strong>virtual firewalls</strong>; the SG is instance-local &amp; stateful, the NACL is subnet-level &amp;
+stateless with explicit allow/deny ordering.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="checkpoint">
+<h2>Checkpoint<a class="headerlink" href="#checkpoint" title="Link to this heading">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Q1. Which OSI layer is responsible for switching, and what does a switch use?</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text"><strong>Answer.</strong> Layer 2 (Data Link); switches forward frames using <strong>MAC addresses</strong>.</p>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Q2. Why can a DNS resolver talk to a root server directly?</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text"><strong>Answer.</strong> Because DNS is <em>delegated</em> hierarchically: roots delegate to TLDs which delegate to
+authoritative zones; the resolver follows referrals iteratively/recursively.</p>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Q3. In a VPC, what single route makes a subnet public?</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text"><strong>Answer.</strong> A route <code class="docutils literal notranslate"><span class="pre">0.0.0.0/0</span></code> whose target is the <strong>Internet Gateway (IGW)</strong>.</p>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Q4. What is stateful about a Security Group, and how does that affect return traffic?</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text"><strong>Answer.</strong> SG rules are stateful: an <em>outbound</em> connection you allow does not need a matching
+inbound rule for the response (the response is auto-allowed).</p>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Q5. Compare NACL allow/deny ordering to SG allow-only semantics in one sentence.</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text"><strong>Answer.</strong> NACLs are <strong>stateless</strong> and evaluated by number (deny/allow, lowest first);
+SGs are <strong>stateful</strong> and only need explicit <em>allow</em> rules.</p>
+</div>
+</details></section>
+<hr class="docutils" />
+<section id="sources">
+<h2>Sources<a class="headerlink" href="#sources" title="Link to this heading">#</a></h2>
+<p>The concepts in this chapter are summarized from the following authoritative sources:</p>
+<ul class="simple">
+<li><p>OSI / TCP-IP models: Tanenbaum &amp; van Steen, <em>Distributed Systems</em></p></li>
+<li><p>HTTP/1.1 (RFC 2616): <a class="reference external" href="https://www.rfc-editor.org/rfc/rfc2616">https://www.rfc-editor.org/rfc/rfc2616</a></p></li>
+<li><p>Amazon VPC User Guide: <a class="reference external" href="https://docs.aws.amazon.com/vpc/latest/userguide/">https://docs.aws.amazon.com/vpc/latest/userguide/</a></p></li>
+<li><p>VPC security best practices: <a class="reference external" href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-best-practices.html">https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-best-practices.html</a></p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chap04"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../chap03/ch03.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Identity, Access Management, and Governance</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../chap05/ch05.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Compute Infrastructure Administration</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-osi-model">The OSI Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-tcp-ip-model">The TCP/IP Model</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tcp-vs-udp">TCP vs. UDP</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#routing">Routing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dns-domain-name-system">DNS (Domain Name System)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#amazon-vpc">Amazon VPC</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vpc-building-blocks">VPC building blocks</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#subnets-route-tables-security-groups">Subnets, Route Tables, Security Groups</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#subnets">Subnets</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#route-tables">Route tables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#security-groups-vs-nacls">Security Groups vs. NACLs</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checkpoint">Checkpoint</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sources">Sources</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By SAM10 Systems Administration and Management | College of Computer Science | Angeles University Foundation | R.L.Natividad
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

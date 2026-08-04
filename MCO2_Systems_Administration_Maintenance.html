@@ -1,0 +1,1147 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>MCO2 — Systems Administration and Maintenance &#8212; Systems Administration and Maintenance (SAM10)</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="_static/documentation_options.js?v=c73c0f3e"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'MCO2_Systems_Administration_Maintenance';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="MCO1 — AWS Infrastructure Deployment" href="MCO1_AWS_Infrastructure_Deployment.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="_static/cover.svg" class="logo__image only-light" alt="Systems Administration and Maintenance (SAM10) - Home"/>
+    <img src="_static/cover.svg" class="logo__image only-dark pst-js-only" alt="Systems Administration and Maintenance (SAM10) - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Part I — Foundations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chap01/ch01.html">Foundations of Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap02/ch02.html">Cloud Computing and Virtualization Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap03/ch03.html">Identity, Access Management, and Governance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap04/ch04.html">Computer Networks and Cloud Networking</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part II — Infrastructure &amp; Systems Administration</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chap05/ch05.html">Compute Infrastructure Administration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap06/ch06.html">Linux Systems Administration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap07/ch07.html">Storage Administration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap08/ch08.html">Database Administration</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part III — Services, Security &amp; Reliability</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chap09/ch09.html">Web and Application Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap10/ch10.html">Monitoring, Logging, and Performance Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap11/ch11.html">Cloud Security Administration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap12/ch12.html">High Availability, Scalability, and Reliability Engineering</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part IV — Operations, Maintenance &amp; Architecture</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chap13/ch13.html">Backup, Disaster Recovery, and Business Continuity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap14/ch14.html">Systems Maintenance, Automation, and IT Service Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap15/ch15.html">Cloud Architecture, Optimization, and the Well-Architected Framework</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part V — Laboratory Exercises</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="labs/semester-plan.html">SAM10 Semester Plan · AWS Cloud Foundations + Cloud Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="labs/lab00.html">Lab 0 — Course Orientation &amp; Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="labs/lab01.html">Lab 1 — Module 1: Cloud Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="labs/lab02.html">Lab 2 — Module 2: Technology Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="labs/lab03.html">Lab 3 — Module 3: Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="labs/lab04.html">Lab 4 — Module 4: Compute &amp; Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="labs/lab05.html">Lab 5 — Module 5: Networking &amp; Content Delivery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="labs/lab06.html">Lab 6 — Module 6: Databases &amp; Analytics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="labs/lab07.html">Lab 7 — Module 7: Infrastructure as Code (AWS Cloud Operations)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="labs/lab08.html">Lab 8 — Module 8: Monitoring &amp; Observability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="labs/lab09.html">Lab 9 — Module 9: Logging &amp; Auditing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="labs/lab10.html">Lab 10 — Module 10: Incident Response</a></li>
+<li class="toctree-l1"><a class="reference internal" href="labs/lab11.html">Lab 11 — Module 11: Backup &amp; Disaster Recovery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="labs/lab12.html">Lab 12 — Module 12: Cost Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="labs/lab13.html">Lab 13 — Module 13: Deployment Strategies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="labs/lab14.html">Lab 14 — Module 14: Well-Architected Reviews</a></li>
+<li class="toctree-l1"><a class="reference internal" href="labs/lab15.html">Lab 15 — Module 15: Automation &amp; DevOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MCO1_AWS_Infrastructure_Deployment.html">MCO1 — AWS Infrastructure Deployment</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">MCO2 — Systems Administration and Maintenance</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/MCO2_Systems_Administration_Maintenance.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>MCO2 — Systems Administration and Maintenance</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-outcomes">Learning outcomes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-instruction-guide">Step-by-step instruction guide</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-set-up-monitoring-with-cloudwatch-week-8-co-module-8">Step 1 — Set up monitoring with CloudWatch (Week 8, CO Module 8)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-set-up-logging-and-auditing-week-9-co-module-9">Step 2 — Set up logging and auditing (Week 9, CO Module 9)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-implement-backup-and-disaster-recovery-week-11-co-module-11">Step 3 — Implement backup and disaster recovery (Week 11, CO Module 11)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-apply-security-hardening-week-10-co-module-10-week-3-cf-module-3">Step 4 — Apply security hardening (Week 10, CO Module 10 + Week 3 CF Module 3)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-implement-basic-automation-week-13-co-module-13-week-7-co-module-7">Step 5 — Implement basic automation (Week 13, CO Module 13 + Week 7 CO Module 7)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-troubleshoot-a-common-issue-week-10-co-module-10">Step 6 — Troubleshoot a common issue (Week 10, CO Module 10)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-7-prepare-the-operations-report-week-15">Step 7 — Prepare the operations report (Week 15)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mco2-documentation-template">MCO2 Documentation Template</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mco2-operations-report-template">MCO2 Operations Report Template</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recommendations-for-production">7. Recommendations for Production</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sources">8. Sources</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Sources</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="mco2-systems-administration-and-maintenance">
+<h1>MCO2 — Systems Administration and Maintenance<a class="headerlink" href="#mco2-systems-administration-and-maintenance" title="Link to this heading">#</a></h1>
+<p><strong>Major Course Output 2</strong> · Weeks 7–15 · Weight: 60% of Part V grade</p>
+<section id="learning-outcomes">
+<h2>Learning outcomes<a class="headerlink" href="#learning-outcomes" title="Link to this heading">#</a></h2>
+<p>By the end of this MCO you will be able to:</p>
+<ol class="arabic simple">
+<li><p>Implement monitoring, logging, and alerting for an AWS infrastructure.</p></li>
+<li><p>Configure automated backups and prove a restore operation.</p></li>
+<li><p>Apply security hardening measures (IAM least-privilege, SSH hardening, patching).</p></li>
+<li><p>Build basic automation (Infrastructure as Code, scheduled tasks).</p></li>
+<li><p>Troubleshoot common system issues using logs, metrics, and process inspection.</p></li>
+<li><p>Present a professional operations report with evidence and recommendations.</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="step-by-step-instruction-guide">
+<h2>Step-by-step instruction guide<a class="headerlink" href="#step-by-step-instruction-guide" title="Link to this heading">#</a></h2>
+<section id="step-1-set-up-monitoring-with-cloudwatch-week-8-co-module-8">
+<h3>Step 1 — Set up monitoring with CloudWatch (Week 8, CO Module 8)<a class="headerlink" href="#step-1-set-up-monitoring-with-cloudwatch-week-8-co-module-8" title="Link to this heading">#</a></h3>
+<p><strong>Task:</strong> Create CloudWatch dashboards, alarms, and log groups for your MCO1 infrastructure.</p>
+<p><strong>Detailed instructions:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Create a custom metric for CPU utilization:</strong></p>
+<ul class="simple">
+<li><p>Go to CloudWatch → Metrics → <strong>All metrics</strong> → <strong>Custom Namespaces</strong> → <strong>Create metric</strong>.</p></li>
+<li><p>Namespace: <code class="docutils literal notranslate"><span class="pre">GreenGrid/MCO2</span></code></p></li>
+<li><p>Metric name: <code class="docutils literal notranslate"><span class="pre">CPUUtilization</span></code></p></li>
+<li><p>Dimensions: <code class="docutils literal notranslate"><span class="pre">InstanceId</span></code> = <code class="docutils literal notranslate"><span class="pre">&lt;your-web-instance-id&gt;</span></code></p></li>
+<li><p>Value: the current CPU % (you can push this manually or use the CloudWatch agent).</p></li>
+</ul>
+</li>
+<li><p><strong>Create a CloudWatch dashboard:</strong></p>
+<ul class="simple">
+<li><p>Go to CloudWatch → Dashboards → <strong>Create dashboard</strong>.</p></li>
+<li><p>Name: <code class="docutils literal notranslate"><span class="pre">gg-mco2-dashboard</span></code></p></li>
+<li><p>Add widgets:</p>
+<ul>
+<li><p><strong>Line chart</strong>: <code class="docutils literal notranslate"><span class="pre">GreenGrid/MCO2</span></code> → <code class="docutils literal notranslate"><span class="pre">CPUUtilization</span></code> (last 24 hours)</p></li>
+<li><p><strong>Line chart</strong>: <code class="docutils literal notranslate"><span class="pre">AWS/EC2</span></code> → <code class="docutils literal notranslate"><span class="pre">CPUUtilization</span></code> for your instance</p></li>
+<li><p><strong>Number widget</strong>: <code class="docutils literal notranslate"><span class="pre">AWS/EC2</span></code> → <code class="docutils literal notranslate"><span class="pre">StatusCheckFailed</span></code> (instance status checks)</p></li>
+<li><p><strong>Log widget</strong>: query your CloudWatch Logs group for errors</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Create an alarm for high CPU:</strong></p>
+<ul class="simple">
+<li><p>Go to CloudWatch → Alarms → <strong>Create alarm</strong>.</p></li>
+<li><p>Select metric: <code class="docutils literal notranslate"><span class="pre">CPUUtilization</span></code> for your instance.</p></li>
+<li><p>Condition: <code class="docutils literal notranslate"><span class="pre">Average</span> <span class="pre">&gt;</span> <span class="pre">80%</span></code> for 3 consecutive periods of 5 minutes.</p></li>
+<li><p>Actions: notify your SNS topic (create one if you don’t have it).</p></li>
+<li><p>Name: <code class="docutils literal notranslate"><span class="pre">gg-mco2-high-cpu</span></code></p></li>
+</ul>
+</li>
+<li><p><strong>Create a CloudWatch Log Group for nginx access logs:</strong></p>
+<ul class="simple">
+<li><p>Go to CloudWatch → Logs → <strong>Create log group</strong>.</p></li>
+<li><p>Log group name: <code class="docutils literal notranslate"><span class="pre">/gg/mco2/nginx-access</span></code></p></li>
+<li><p>On your web server, install the CloudWatch agent and configure it to ship <code class="docutils literal notranslate"><span class="pre">/var/log/nginx/access.log</span></code> to this log group.</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Verify:</strong> The dashboard shows CPU metrics. The alarm is in <code class="docutils literal notranslate"><span class="pre">OK</span></code> state (CPU is low). The log group receives log entries.</p>
+<p><strong>Screenshots:</strong> Save as:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">mco2-cw-dashboard.png</span></code> (dashboard view)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mco2-cw-alarm.png</span></code> (alarm configuration)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mco2-cw-logs.png</span></code> (log group with entries)</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="step-2-set-up-logging-and-auditing-week-9-co-module-9">
+<h3>Step 2 — Set up logging and auditing (Week 9, CO Module 9)<a class="headerlink" href="#step-2-set-up-logging-and-auditing-week-9-co-module-9" title="Link to this heading">#</a></h3>
+<p><strong>Task:</strong> Enable CloudTrail for your account and configure log retention.</p>
+<p><strong>Detailed instructions:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Create a CloudTrail:</strong></p>
+<ul class="simple">
+<li><p>Go to CloudTrail → Trails → <strong>Create trail</strong>.</p></li>
+<li><p>Name: <code class="docutils literal notranslate"><span class="pre">gg-mco2-trail</span></code></p></li>
+<li><p>Storage location: <strong>Create a new S3 bucket</strong> named <code class="docutils literal notranslate"><span class="pre">gg-mco2-cloudtrail-logs-&lt;account-id&gt;</span></code></p></li>
+<li><p>Enable <strong>Log file validation</strong> (ensures log integrity)</p></li>
+<li><p>Enable <strong>CloudWatch Logs integration</strong>:</p>
+<ul>
+<li><p>Create a new log group: <code class="docutils literal notranslate"><span class="pre">/aws/cloudtrail/gg-mco2</span></code></p></li>
+<li><p>Use a new IAM role: <code class="docutils literal notranslate"><span class="pre">gg-mco2-cloudtrail-role</span></code></p></li>
+</ul>
+</li>
+<li><p>Apply the trail to <strong>all regions</strong></p></li>
+<li><p>Enable <strong>data events</strong> for S3 (log all S3 object-level API calls)</p></li>
+</ul>
+</li>
+<li><p><strong>Verify the trail is working:</strong></p>
+<ul class="simple">
+<li><p>Go to CloudTrail → Events → <strong>Event history</strong>.</p></li>
+<li><p>Filter by event name: <code class="docutils literal notranslate"><span class="pre">ConsoleLogin</span></code></p></li>
+<li><p>You should see your own login events.</p></li>
+</ul>
+</li>
+<li><p><strong>Set up log retention:</strong></p>
+<ul class="simple">
+<li><p>Go to CloudWatch → Log groups → <code class="docutils literal notranslate"><span class="pre">/aws/cloudtrail/gg-mco2</span></code></p></li>
+<li><p>Set retention to <strong>90 days</strong> (or your organization’s policy).</p></li>
+<li><p>Set retention for <code class="docutils literal notranslate"><span class="pre">/gg/mco2/nginx-access</span></code> to <strong>30 days</strong>.</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Verify:</strong> CloudTrail is recording events in all regions. Log groups have retention policies set.</p>
+<p><strong>Screenshots:</strong> Save as <code class="docutils literal notranslate"><span class="pre">mco2-cloudtrail.png</span></code> and <code class="docutils literal notranslate"><span class="pre">mco2-log-retention.png</span></code>.</p>
+</section>
+<hr class="docutils" />
+<section id="step-3-implement-backup-and-disaster-recovery-week-11-co-module-11">
+<h3>Step 3 — Implement backup and disaster recovery (Week 11, CO Module 11)<a class="headerlink" href="#step-3-implement-backup-and-disaster-recovery-week-11-co-module-11" title="Link to this heading">#</a></h3>
+<p><strong>Task:</strong> Create automated backups for your RDS instance and EBS volumes, then prove a restore works.</p>
+<p><strong>Detailed instructions:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Enable RDS automated backups:</strong></p>
+<ul class="simple">
+<li><p>Go to RDS → Databases → select <code class="docutils literal notranslate"><span class="pre">gg-mco1-db</span></code> → <strong>Modify</strong>.</p></li>
+<li><p>Backup retention period: <strong>7 days</strong></p></li>
+<li><p>Preferred backup window: <strong>03:00-04:00 UTC</strong> (off-peak hours)</p></li>
+<li><p>Enable <strong>Performance Insights</strong> (optional, for the report)</p></li>
+<li><p>Click <strong>Continue</strong> → <strong>Modify DB</strong></p></li>
+</ul>
+</li>
+<li><p><strong>Create a manual RDS snapshot:</strong></p>
+<ul class="simple">
+<li><p>Go to RDS → Databases → select <code class="docutils literal notranslate"><span class="pre">gg-mco1-db</span></code> → <strong>Actions</strong> → <strong>Take snapshot</strong>.</p></li>
+<li><p>Snapshot name: <code class="docutils literal notranslate"><span class="pre">gg-mco1-db-backup-$(date</span> <span class="pre">+%F)</span></code></p></li>
+<li><p>Wait for the snapshot status to become <strong>available</strong>.</p></li>
+</ul>
+</li>
+<li><p><strong>Create an EBS snapshot for the web server’s root volume:</strong></p>
+<ul class="simple">
+<li><p>Go to EC2 → Volumes → select the volume attached to <code class="docutils literal notranslate"><span class="pre">gg-mco1-web-a</span></code>.</p></li>
+<li><p><strong>Actions</strong> → <strong>Create snapshot</strong>.</p></li>
+<li><p>Description: <code class="docutils literal notranslate"><span class="pre">gg-mco1-web-a-root-backup-$(date</span> <span class="pre">+%F)</span></code></p></li>
+<li><p>Wait for the snapshot to complete.</p></li>
+</ul>
+</li>
+<li><p><strong>Prove a restore works:</strong></p>
+<ul class="simple">
+<li><p><strong>RDS restore:</strong> Go to RDS → Snapshots → select your manual snapshot → <strong>Actions</strong> → <strong>Restore snapshot</strong>.</p>
+<ul>
+<li><p>New DB instance identifier: <code class="docutils literal notranslate"><span class="pre">gg-mco1-db-restore-test</span></code></p></li>
+<li><p>Use the same DB instance class and settings.</p></li>
+<li><p>Wait for the restored DB to become <strong>available</strong>.</p></li>
+<li><p>Connect to the restored DB and run: <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">1;</span></code> — should return <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p></li>
+<li><p><strong>Delete the restored DB</strong> after verification (to avoid charges).</p></li>
+</ul>
+</li>
+<li><p><strong>EBS restore:</strong> Go to EC2 → Snapshots → select your snapshot → <strong>Actions</strong> → <strong>Create volume</strong>.</p>
+<ul>
+<li><p>Create the volume in the same AZ.</p></li>
+<li><p>Attach it to a test instance as a secondary volume.</p></li>
+<li><p>Mount and verify the files are intact.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p><strong>Verify:</strong> RDS PITR works (you can restore to any point within the 7-day window). EBS snapshot restores correctly.</p>
+<p><strong>Screenshots:</strong> Save as:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">mco2-rds-snapshot.png</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mco2-rds-restore.png</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mco2-ebs-snapshot.png</span></code></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="step-4-apply-security-hardening-week-10-co-module-10-week-3-cf-module-3">
+<h3>Step 4 — Apply security hardening (Week 10, CO Module 10 + Week 3 CF Module 3)<a class="headerlink" href="#step-4-apply-security-hardening-week-10-co-module-10-week-3-cf-module-3" title="Link to this heading">#</a></h3>
+<p><strong>Task:</strong> Harden the EC2 instances and IAM configuration.</p>
+<p><strong>Detailed instructions:</strong></p>
+<ol class="arabic">
+<li><p><strong>SSH hardening on web servers:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh<span class="w"> </span>-i<span class="w"> </span>gg-mco1-key.pem<span class="w"> </span>ec2-user@&lt;WEB_SERVER_1_PUBLIC_IP&gt;
+
+<span class="c1"># Change SSH to non-standard port</span>
+sudo<span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/^#Port 22/Port 2222/&#39;</span><span class="w"> </span>/etc/ssh/sshd_config
+
+<span class="c1"># Disable password authentication</span>
+sudo<span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/^#PasswordAuthentication yes/PasswordAuthentication no/&#39;</span><span class="w"> </span>/etc/ssh/sshd_config
+
+<span class="c1"># Disable root login</span>
+sudo<span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/^#PermitRootLogin prohibit-password/PermitRootLogin no/&#39;</span><span class="w"> </span>/etc/ssh/sshd_config
+
+<span class="c1"># Restart SSH</span>
+sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>sshd
+
+<span class="c1"># Verify SSH is listening on port 2222</span>
+sudo<span class="w"> </span>ss<span class="w"> </span>-tlnp<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>:2222
+</pre></div>
+</div>
+</li>
+<li><p><strong>Install and configure the CloudWatch agent:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>amazon-cloudwatch-agent
+
+<span class="c1"># Create the agent config</span>
+sudo<span class="w"> </span>bash<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;cat &gt; /opt/aws/amazon-cloudwatch-agent/bin/config.json &lt;&lt;EOF</span>
+<span class="s1">{</span>
+<span class="s1">  &quot;metrics&quot;: {</span>
+<span class="s1">    &quot;append_dimensions&quot;: {</span>
+<span class="s1">      &quot;InstanceId&quot;: &quot;${aws:InstanceId}&quot;</span>
+<span class="s1">    },</span>
+<span class="s1">    &quot;metrics_collected&quot;: {</span>
+<span class="s1">      &quot;cpu&quot;: { &quot;measurement&quot;: [&quot;cpu_usage_idle&quot;], &quot;metrics_collection_interval&quot;: 60 },</span>
+<span class="s1">      &quot;mem&quot;: { &quot;measurement&quot;: [&quot;mem_used_percent&quot;], &quot;metrics_collection_interval&quot;: 60 },</span>
+<span class="s1">      &quot;disk&quot;: { &quot;measurement&quot;: [&quot;used_percent&quot;], &quot;resources&quot;: [&quot;/&quot;] }</span>
+<span class="s1">    }</span>
+<span class="s1">  },</span>
+<span class="s1">  &quot;logs&quot;: {</span>
+<span class="s1">    &quot;logs_collected&quot;: {</span>
+<span class="s1">      &quot;files&quot;: {</span>
+<span class="s1">        &quot;collect_list&quot;: [</span>
+<span class="s1">          {</span>
+<span class="s1">            &quot;file_path&quot;: &quot;/var/log/nginx/access.log&quot;,</span>
+<span class="s1">            &quot;log_group_name&quot;: &quot;/gg/mco2/nginx-access&quot;,</span>
+<span class="s1">            &quot;log_stream_name&quot;: &quot;${aws:InstanceId}&quot;</span>
+<span class="s1">          }</span>
+<span class="s1">        ]</span>
+<span class="s1">      }</span>
+<span class="s1">    }</span>
+<span class="s1">  }</span>
+<span class="s1">}</span>
+<span class="s1">EOF&#39;</span>
+
+sudo<span class="w"> </span>/opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-a<span class="w"> </span>fetch-config<span class="w"> </span>-m<span class="w"> </span>ec2<span class="w"> </span>-s<span class="w"> </span>-c<span class="w"> </span>file:/opt/aws/amazon-cloudwatch-agent/bin/config.json
+</pre></div>
+</div>
+</li>
+<li><p><strong>Apply OS patches:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>dnf<span class="w"> </span>update<span class="w"> </span>-y
+sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>yum-plugin-security
+sudo<span class="w"> </span>yum<span class="w"> </span>--security<span class="w"> </span>updateinfo<span class="w"> </span>list<span class="w"> </span>security
+sudo<span class="w"> </span>yum<span class="w"> </span>update<span class="w"> </span>-y<span class="w"> </span>--security
+</pre></div>
+</div>
+</li>
+<li><p><strong>Verify IAM least-privilege for the EC2 instance:</strong></p>
+<ul class="simple">
+<li><p>Go to IAM → Roles → find the role attached to your EC2 instance.</p></li>
+<li><p>Verify the policy is scoped to only the actions needed (S3 read/write for static assets, CloudWatch put metrics, etc.).</p></li>
+<li><p><strong>Do NOT</strong> use <code class="docutils literal notranslate"><span class="pre">AdministratorAccess</span></code> — use a custom policy with least privilege.</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Verify:</strong> SSH works on port 2222 only. CloudWatch agent is shipping metrics and logs. OS is patched. IAM role has least-privilege policies.</p>
+<p><strong>Screenshots:</strong> Save as <code class="docutils literal notranslate"><span class="pre">mco2-ssh-hardening.png</span></code>, <code class="docutils literal notranslate"><span class="pre">mco2-cw-agent.png</span></code>, <code class="docutils literal notranslate"><span class="pre">mco2-patches.png</span></code>, <code class="docutils literal notranslate"><span class="pre">mco2-iam-role.png</span></code>.</p>
+</section>
+<hr class="docutils" />
+<section id="step-5-implement-basic-automation-week-13-co-module-13-week-7-co-module-7">
+<h3>Step 5 — Implement basic automation (Week 13, CO Module 13 + Week 7 CO Module 7)<a class="headerlink" href="#step-5-implement-basic-automation-week-13-co-module-13-week-7-co-module-7" title="Link to this heading">#</a></h3>
+<p><strong>Task:</strong> Create an AWS Systems Manager Automation document or a simple Lambda function for a routine task.</p>
+<p><strong>Detailed instructions (Option A — SSM Automation):</strong></p>
+<ol class="arabic simple">
+<li><p>Go to Systems Manager → Automation → <strong>Create automation</strong>.</p></li>
+<li><p>Choose <strong>Quick setup</strong> → <strong>AWS-ApplyPatchBaseline</strong> (or create a custom document).</p></li>
+<li><p>Configure:</p>
+<ul class="simple">
+<li><p>Name: <code class="docutils literal notranslate"><span class="pre">gg-mco2-patch-automation</span></code></p></li>
+<li><p>Targets: select your web server instances by tag (<code class="docutils literal notranslate"><span class="pre">Project=SAM10-MCO1</span></code>)</p></li>
+<li><p>Schedule: create a <strong>Maintenance Window</strong> that runs every Sunday at 02:00 UTC</p></li>
+</ul>
+</li>
+<li><p>Create the maintenance window:</p>
+<ul class="simple">
+<li><p>Go to Systems Manager → Maintenance Windows → <strong>Create maintenance window</strong>.</p></li>
+<li><p>Name: <code class="docutils literal notranslate"><span class="pre">gg-mco2-weekly-patch</span></code></p></li>
+<li><p>Schedule: <code class="docutils literal notranslate"><span class="pre">cron(0</span> <span class="pre">2</span> <span class="pre">?</span> <span class="pre">*</span> <span class="pre">SUN</span> <span class="pre">*)</span></code> (every Sunday at 02:00 UTC)</p></li>
+<li><p>Duration: 2 hours</p></li>
+<li><p>Cutoff: 1 hour</p></li>
+<li><p>Target: select your web server instances</p></li>
+<li><p>Task: <code class="docutils literal notranslate"><span class="pre">AWS-ApplyPatchBaseline</span></code></p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Detailed instructions (Option B — Lambda function for log rotation):</strong></p>
+<ol class="arabic">
+<li><p>Go to Lambda → <strong>Create function</strong>.</p></li>
+<li><p>Name: <code class="docutils literal notranslate"><span class="pre">gg-mco2-log-rotation</span></code></p></li>
+<li><p>Runtime: Python 3.12</p></li>
+<li><p>Role: create a new role with basic Lambda permissions + CloudWatch Logs permissions.</p></li>
+<li><p>Add the following code:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">boto3</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
+
+<span class="n">logs</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s1">&#39;logs&#39;</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">lambda_handler</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+    <span class="c1"># List log groups older than 30 days and set retention to 30 days</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">logs</span><span class="o">.</span><span class="n">describe_log_groups</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;logGroups&#39;</span><span class="p">]:</span>
+        <span class="n">log_group</span> <span class="o">=</span> <span class="n">group</span><span class="p">[</span><span class="s1">&#39;logGroupName&#39;</span><span class="p">]</span>
+        <span class="n">retention</span> <span class="o">=</span> <span class="n">group</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;retentionInDays&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">retention</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">retention</span> <span class="o">&gt;</span> <span class="mi">30</span><span class="p">:</span>
+            <span class="n">logs</span><span class="o">.</span><span class="n">put_retention_policy</span><span class="p">(</span>
+                <span class="n">logGroupName</span><span class="o">=</span><span class="n">log_group</span><span class="p">,</span>
+                <span class="n">retentionInDays</span><span class="o">=</span><span class="mi">30</span>
+            <span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Set retention for </span><span class="si">{</span><span class="n">log_group</span><span class="si">}</span><span class="s2"> to 30 days&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;statusCode&#39;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span> <span class="s1">&#39;body&#39;</span><span class="p">:</span> <span class="s1">&#39;Log retention policies applied&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create a CloudWatch Events rule to trigger the Lambda every day at 00:00 UTC:</p>
+<ul class="simple">
+<li><p>Rule name: <code class="docutils literal notranslate"><span class="pre">gg-mco2-daily-log-retention</span></code></p></li>
+<li><p>Schedule expression: <code class="docutils literal notranslate"><span class="pre">cron(0</span> <span class="pre">0</span> <span class="pre">?</span> <span class="pre">*</span> <span class="pre">*</span> <span class="pre">*)</span></code></p></li>
+<li><p>Target: <code class="docutils literal notranslate"><span class="pre">gg-mco2-log-rotation</span></code> Lambda function</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Verify:</strong> The automation runs on schedule. Check CloudWatch Logs for execution results.</p>
+<p><strong>Screenshots:</strong> Save as <code class="docutils literal notranslate"><span class="pre">mco2-ssm-automation.png</span></code> or <code class="docutils literal notranslate"><span class="pre">mco2-lambda.png</span></code>.</p>
+</section>
+<hr class="docutils" />
+<section id="step-6-troubleshoot-a-common-issue-week-10-co-module-10">
+<h3>Step 6 — Troubleshoot a common issue (Week 10, CO Module 10)<a class="headerlink" href="#step-6-troubleshoot-a-common-issue-week-10-co-module-10" title="Link to this heading">#</a></h3>
+<p><strong>Task:</strong> Simulate a common issue and troubleshoot it using CloudWatch, logs, and process inspection.</p>
+<p><strong>Scenario:</strong> The web server is returning 502 Bad Gateway.</p>
+<p><strong>Troubleshooting steps:</strong></p>
+<ol class="arabic">
+<li><p><strong>Check the ALB target group health:</strong></p>
+<ul class="simple">
+<li><p>Go to EC2 → Target Groups → select your TG → <strong>Health checks</strong> tab.</p></li>
+<li><p>Are the targets healthy? If not, note the reason (e.g., “request timed out”, “unhealthy”).</p></li>
+</ul>
+</li>
+<li><p><strong>Check nginx logs on the web server:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh<span class="w"> </span>-i<span class="w"> </span>gg-mco1-key.pem<span class="w"> </span>-p<span class="w"> </span><span class="m">2222</span><span class="w"> </span>ec2-user@&lt;WEB_SERVER_1_PUBLIC_IP&gt;
+sudo<span class="w"> </span>tail<span class="w"> </span>-50<span class="w"> </span>/var/log/nginx/error.log
+</pre></div>
+</div>
+<p>Look for errors like <code class="docutils literal notranslate"><span class="pre">connect()</span> <span class="pre">failed</span></code>, <code class="docutils literal notranslate"><span class="pre">permission</span> <span class="pre">denied</span></code>, or <code class="docutils literal notranslate"><span class="pre">no</span> <span class="pre">route</span> <span class="pre">to</span> <span class="pre">host</span></code>.</p>
+</li>
+<li><p><strong>Check if nginx is running:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>nginx
+</pre></div>
+</div>
+<p>If it’s not running, try to start it:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>systemctl<span class="w"> </span>start<span class="w"> </span>nginx
+sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>nginx
+</pre></div>
+</div>
+</li>
+<li><p><strong>Check system resources:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>top<span class="w"> </span>-bn1<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-10
+df<span class="w"> </span>-h<span class="w"> </span>/
+free<span class="w"> </span>-m
+</pre></div>
+</div>
+<p>Is CPU at 100%? Is disk full? Is memory exhausted?</p>
+</li>
+<li><p><strong>Check the security group:</strong></p>
+<ul class="simple">
+<li><p>Is the ALB security group allowing traffic on port 80 from <code class="docutils literal notranslate"><span class="pre">0.0.0.0/0</span></code>?</p></li>
+<li><p>Is the web server’s security group allowing traffic on port 80 from the ALB’s security group?</p></li>
+</ul>
+</li>
+<li><p><strong>Document the root cause and fix:</strong></p>
+<ul class="simple">
+<li><p>Write a brief description of what caused the 502 and how you fixed it.</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Deliverable:</strong> <code class="docutils literal notranslate"><span class="pre">mco2-troubleshooting.md</span></code> — a written incident report with:</p>
+<ul class="simple">
+<li><p>Timeline of events</p></li>
+<li><p>Symptoms observed</p></li>
+<li><p>Root cause identified</p></li>
+<li><p>Fix applied</p></li>
+<li><p>Prevention measures for the future</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="step-7-prepare-the-operations-report-week-15">
+<h3>Step 7 — Prepare the operations report (Week 15)<a class="headerlink" href="#step-7-prepare-the-operations-report-week-15" title="Link to this heading">#</a></h3>
+<p><strong>Task:</strong> Compile all evidence into a professional operations report.</p>
+<p><strong>Detailed instructions:</strong></p>
+<ol class="arabic simple">
+<li><p>Gather all screenshots and outputs from Steps 1–6.</p></li>
+<li><p>Organize them into the report template below.</p></li>
+<li><p>Write a summary paragraph for each section describing what you did and what you learned.</p></li>
+<li><p>Include a “Recommendations for Production” section with at least 3 actionable recommendations.</p></li>
+</ol>
+</section>
+</section>
+<hr class="docutils" />
+<section id="mco2-documentation-template">
+<h2>MCO2 Documentation Template<a class="headerlink" href="#mco2-documentation-template" title="Link to this heading">#</a></h2>
+<section id="mco2-operations-report-template">
+<h3>MCO2 Operations Report Template<a class="headerlink" href="#mco2-operations-report-template" title="Link to this heading">#</a></h3>
+<p>Replace the dummy content below with your real values.</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="gh"># MCO2 — Systems Administration and Maintenance Report</span>
+
+<span class="gu">## Student Information</span>
+<span class="k">-</span><span class="w"> </span><span class="gs">**Name:**</span> Jane Doe
+<span class="k">-</span><span class="w"> </span><span class="gs">**Student ID:**</span> 12345678
+<span class="k">-</span><span class="w"> </span><span class="gs">**Course:**</span> SAM10 Systems Administration and Management | College of Computer Science | Angeles University Foundation | R.L.Natividad
+<span class="k">-</span><span class="w"> </span><span class="gs">**Date:**</span> 2026-08-04
+<span class="k">-</span><span class="w"> </span><span class="gs">**Infrastructure:**</span> AWS (ap-southeast-1)
+<span class="k">-</span><span class="w"> </span><span class="gs">**Reference Architecture:**</span> MCO1 deployment (gg-mco1-vpc, gg-mco1-web-a, gg-mco1-web-b, gg-mco1-db)
+
+<span class="gu">## 1. Monitoring &amp; Observability</span>
+
+<span class="gu">### 1.1 CloudWatch Dashboard</span>
+![<span class="nt">Dashboard</span>](<span class="na">mco2-cw-dashboard.png</span>)
+
+<span class="gs">**Description:**</span> The dashboard tracks CPU utilization, memory usage, disk usage, and instance status checks for all MCO1 resources. The CPU alarm (<span class="sb">`gg-mco2-high-cpu`</span>) fires when average CPU exceeds 80% for 15 minutes.
+
+<span class="gu">### 1.2 Key Metrics (sample data)</span>
+| Metric | Current Value | Threshold | Status |
+| --- | --- | --- | --- |
+| CPUUtilization (web-a) | 12% | 80% | OK |
+| CPUUtilization (web-b) | 8% | 80% | OK |
+| MemoryUtilization (web-a) | 45% | 90% | OK |
+| DiskUtilization (/) | 32% | 85% | OK |
+| StatusCheckFailed | 0 | 0 | OK |
+
+<span class="gu">### 1.3 CloudWatch Logs</span>
+![<span class="nt">Logs</span>](<span class="na">mco2-cw-logs.png</span>)
+
+<span class="gs">**Description:**</span> Nginx access logs are shipped to CloudWatch Logs group <span class="sb">`/gg/mco2/nginx-access`</span>. Log retention is set to 30 days.
+
+<span class="gu">## 2. Logging &amp; Auditing</span>
+
+<span class="gu">### 2.1 CloudTrail Configuration</span>
+![<span class="nt">CloudTrail</span>](<span class="na">mco2-cloudtrail.png</span>)
+
+<span class="gs">**Description:**</span> CloudTrail <span class="sb">`gg-mco2-trail`</span> is enabled for all regions with log file validation. Management events and S3 data events are recorded. Logs are stored in S3 bucket <span class="sb">`gg-mco2-cloudtrail-logs-&lt;account-id&gt;`</span> with lifecycle policy transitioning to Glacier after 90 days.
+
+<span class="gu">### 2.2 Log Retention</span>
+| Log Group | Retention |
+| --- | --- |
+| <span class="sb">`/aws/cloudtrail/gg-mco2`</span> | 90 days |
+| <span class="sb">`/gg/mco2/nginx-access`</span> | 30 days |
+
+![<span class="nt">Log Retention</span>](<span class="na">mco2-log-retention.png</span>)
+
+<span class="gu">## 3. Backup &amp; Disaster Recovery</span>
+
+<span class="gu">### 3.1 Backup Strategy</span>
+| Resource | Backup Method | Frequency | Retention | RPO | RTO |
+| --- | --- | --- | --- | --- | --- |
+| RDS PostgreSQL | Automated snapshots + PITR | Daily + continuous | 7 days | ~1 second | ~5 minutes |
+| RDS (manual snapshot) | Manual snapshot | Weekly | 30 days | Point-in-time | ~10 minutes |
+| EBS (web root volume) | Snapshot | Weekly | 30 days | 1 week | ~30 minutes |
+| S3 (static assets) | Versioning + CRR | Continuous | Forever | 0 | ~minutes |
+
+<span class="gu">### 3.2 Restore Test Results</span>
+![<span class="nt">RDS Restore</span>](<span class="na">mco2-rds-restore.png</span>)
+
+<span class="gs">**RDS Restore Test:**</span> Manual snapshot <span class="sb">`gg-mco1-db-backup-2026-08-04`</span> was restored to a test instance <span class="sb">`gg-mco1-db-restore-test`</span>. Connection test <span class="sb">`SELECT 1;`</span> returned <span class="sb">`1`</span>. Test instance deleted after verification. <span class="gs">**Result: PASS.**</span>
+
+<span class="gs">**EBS Restore Test:**</span> Snapshot <span class="sb">`gg-mco1-web-a-root-backup-2026-08-04`</span> was restored to a new volume and attached to a test instance. Files verified intact. <span class="gs">**Result: PASS.**</span>
+
+<span class="gu">## 4. Security Hardening</span>
+
+<span class="gu">### 4.1 SSH Hardening</span>
+| Setting | Before | After |
+| --- | --- | --- |
+| SSH Port | 22 | 2222 |
+| Password Authentication | yes | no |
+| Root Login | prohibit-password | no |
+
+<span class="gu">### 4.2 OS Patching</span>
+<span class="k">-</span><span class="w"> </span>Last patch date: 2026-08-04
+<span class="k">-</span><span class="w"> </span>Security patches applied: 3 (CVE-2026-xxxx)
+<span class="k">-</span><span class="w"> </span>Reboot required: no
+
+<span class="gu">### 4.3 IAM Least Privilege</span>
+![<span class="nt">IAM Role</span>](<span class="na">mco2-iam-role.png</span>)
+
+<span class="gs">**EC2 instance role:**</span> <span class="sb">`gg-mco1-ec2-role`</span> with a custom policy allowing only:
+<span class="k">-</span><span class="w"> </span><span class="sb">`s3:GetObject`</span>, <span class="sb">`s3:PutObject`</span> on <span class="sb">`gg-mco1-static-assets-*`</span>
+<span class="k">-</span><span class="w"> </span><span class="sb">`cloudwatch:PutMetricData`</span> on <span class="sb">`GreenGrid/MCO2`</span> namespace
+<span class="k">-</span><span class="w"> </span><span class="sb">`logs:CreateLogStream`</span>, <span class="sb">`logs:PutLogEvents`</span> on <span class="sb">`/gg/mco2/*`</span>
+
+<span class="gu">## 5. Automation</span>
+
+<span class="gu">### 5.1 Weekly Patching Maintenance Window</span>
+![<span class="nt">SSM Automation</span>](<span class="na">mco2-ssm-automation.png</span>)
+
+<span class="gs">**Description:**</span> A maintenance window <span class="sb">`gg-mco2-weekly-patch`</span> runs every Sunday at 02:00 UTC. It applies security patches to all web server instances tagged <span class="sb">`Project=SAM10-MCO1`</span>. The window has a 2-hour duration and a 1-hour cutoff.
+
+<span class="gu">### 5.2 Log Retention Automation (optional)</span>
+A Lambda function <span class="sb">`gg-mco2-log-rotation`</span> runs daily at 00:00 UTC to enforce 30-day log retention across all CloudWatch log groups.
+
+<span class="gu">## 6. Troubleshooting Report</span>
+
+<span class="gu">### 6.1 Incident: 502 Bad Gateway on Web Server</span>
+
+<span class="gs">**Timeline:**</span>
+| Time | Event |
+| --- | --- |
+| 14:30 | Monitoring alarm fired: 5xx errors detected |
+| 14:31 | SSHed into web server on port 2222 |
+| 14:32 | Checked nginx status: <span class="sb">`inactive (dead)`</span> |
+| 14:33 | Checked nginx error log: <span class="sb">`bind() to 0.0.0.0:80 failed (98: Address already in use)`</span> |
+| 14:34 | Killed stale nginx process: <span class="sb">`sudo kill -9 $(pgrep nginx)`</span> |
+| 14:35 | Restarted nginx: <span class="sb">`sudo systemctl start nginx`</span> |
+| 14:36 | Verified: <span class="sb">`curl -sS -o /dev/null -w &quot;%{http_code}&quot; http://localhost/`</span> → <span class="sb">`200`</span> |
+| 14:37 | Verified ALB health check: target healthy |
+
+<span class="gs">**Root Cause:**</span> A previous nginx process was not properly terminated, leaving the port 80 socket in <span class="sb">`TIME_WAIT`</span> state. The new nginx instance could not bind to port 80.
+
+<span class="gs">**Fix:**</span> Killed the stale process and restarted nginx.
+
+<span class="gs">**Prevention:**</span> Add a pre-start script to the systemd unit that kills any stale nginx processes before starting:
+```ini
+[Service]
+ExecStartPre=/bin/bash -c &#39;pkill -9 nginx || true&#39;
+</pre></div>
+</div>
+</section>
+</section>
+<section id="recommendations-for-production">
+<h2>7. Recommendations for Production<a class="headerlink" href="#recommendations-for-production" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Enable Multi-AZ for RDS</strong> — currently running as single-AZ. Multi-AZ provides automatic failover with ~60 second RTO.</p></li>
+<li><p><strong>Implement AWS Config conformance packs</strong> — to continuously audit resource configurations against security baselines.</p></li>
+<li><p><strong>Add a WAF (Web Application Firewall)</strong> — in front of the ALB to protect against common web attacks (SQL injection, XSS).</p></li>
+<li><p><strong>Implement Infrastructure as Code</strong> — all resources should be defined in CloudFormation templates stored in git, not created manually via the console.</p></li>
+<li><p><strong>Set up Cost Anomaly Detection</strong> — to alert on unexpected spend spikes.</p></li>
+</ol>
+</section>
+<section id="sources">
+<h2>8. Sources<a class="headerlink" href="#sources" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>AWS CloudWatch User Guide: <a class="reference external" href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/">https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/</a></p></li>
+<li><p>AWS CloudTrail User Guide: <a class="reference external" href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/">https://docs.aws.amazon.com/awscloudtrail/latest/userguide/</a></p></li>
+<li><p>AWS Backup User Guide: <a class="reference external" href="https://docs.aws.amazon.com/backup/latest/devguide/">https://docs.aws.amazon.com/backup/latest/devguide/</a></p></li>
+<li><p>AWS Systems Manager User Guide: <a class="reference external" href="https://docs.aws.amazon.com/systems-manager/latest/userguide/">https://docs.aws.amazon.com/systems-manager/latest/userguide/</a></p></li>
+<li><p>AWS Well-Architected — Operational Excellence pillar: <a class="reference external" href="https://docs.aws.amazon.com/wellarchitected/latest/">https://docs.aws.amazon.com/wellarchitected/latest/</a></p></li>
+<li><p>Module 8 (Monitoring), Module 9 (Logging), Module 10 (Incident Response), Module 11 (Backup/DR), Module 13 (Deployment), Module 15 (Automation) — AWS Skill Builder</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+---
+
+## Checkpoint Questions
+
+```{dropdown} Q1. What is the difference between a CloudWatch alarm and a CloudWatch dashboard?
+**Answer.** A **dashboard** is a visual view of metrics (graphs, numbers). An **alarm** is an automated action triggered when a metric crosses a threshold (e.g., send an SNS notification, trigger a Lambda).
+</pre></div>
+</div>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Q2. Why enable CloudTrail log file validation?</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text"><strong>Answer.</strong> Log file validation adds an SHA-256 hash to each log file, allowing you to <strong>prove</strong> that the logs haven’t been tampered with — critical for forensic and compliance purposes.</p>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Q3. RDS automated backup retention is set to 7 days — what does this mean for PITR?</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text"><strong>Answer.</strong> You can restore the database to <strong>any point within the last 7 days</strong> (second-level granularity). Beyond 7 days, only manual snapshots are available.</p>
+</div>
+</details><p>```{dropdown} Q4. Your EC2 instance role has <code class="docutils literal notranslate"><span class="pre">s3:PutObject</span></code> on the static assets bucket. Can it also <code class="docutils literal notranslate"><span class="pre">s3:DeleteObject</span></code>?
+<strong>Answer.</strong> No — unless the policy explicitly includes <code class="docutils literal notranslate"><span class="pre">s3:DeleteObject</span></code>. IAM policies are <strong>explicit allow</strong> — if an action isn’t listed, it’s denied by default.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>```{dropdown} Q5. A maintenance window runs for 2 hours but the patching takes 3 hours. What happens?
+**Answer.** The maintenance window **cuts off** at the 2-hour mark (or the 1-hour cutoff, whichever comes first). Any instances still being patched are **aborted** and must be retried in the next window.
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="id1">
+<h2>Sources<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>AWS CloudWatch User Guide: <a class="reference external" href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/">https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/</a></p></li>
+<li><p>AWS CloudTrail User Guide: <a class="reference external" href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/">https://docs.aws.amazon.com/awscloudtrail/latest/userguide/</a></p></li>
+<li><p>AWS Backup User Guide: <a class="reference external" href="https://docs.aws.amazon.com/backup/latest/devguide/">https://docs.aws.amazon.com/backup/latest/devguide/</a></p></li>
+<li><p>AWS Systems Manager User Guide: <a class="reference external" href="https://docs.aws.amazon.com/systems-manager/latest/userguide/">https://docs.aws.amazon.com/systems-manager/latest/userguide/</a></p></li>
+<li><p>AWS Well-Architected Framework: <a class="reference external" href="https://aws.amazon.com/architecture/well-architected/">https://aws.amazon.com/architecture/well-architected/</a></p></li>
+<li><p>AWS Security Best Practices: <a class="reference external" href="https://docs.aws.amazon.com/prescriptive-guidance/latest/security-best-practices/">https://docs.aws.amazon.com/prescriptive-guidance/latest/security-best-practices/</a></p></li>
+<li><p>Module 8–15 — AWS Skill Builder “AWS Cloud Operations” learning path</p></li>
+</ul>
+<footer class="sam10-footer" style="margin-top:3em;text-align:center;color:#666;font-size:0.85em">
+  <hr>
+  <span>SAM10 Systems Administration and Management | College of Computer Science | Angeles University Foundation | R.L.Natividad</span> &mdash;
+  <span>Systems Administration and Maintenance</span> &mdash;
+  <span>Undergraduate course companion</span>
+</footer></section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="MCO1_AWS_Infrastructure_Deployment.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">MCO1 — AWS Infrastructure Deployment</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-outcomes">Learning outcomes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-instruction-guide">Step-by-step instruction guide</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-set-up-monitoring-with-cloudwatch-week-8-co-module-8">Step 1 — Set up monitoring with CloudWatch (Week 8, CO Module 8)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-set-up-logging-and-auditing-week-9-co-module-9">Step 2 — Set up logging and auditing (Week 9, CO Module 9)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-implement-backup-and-disaster-recovery-week-11-co-module-11">Step 3 — Implement backup and disaster recovery (Week 11, CO Module 11)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-apply-security-hardening-week-10-co-module-10-week-3-cf-module-3">Step 4 — Apply security hardening (Week 10, CO Module 10 + Week 3 CF Module 3)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-implement-basic-automation-week-13-co-module-13-week-7-co-module-7">Step 5 — Implement basic automation (Week 13, CO Module 13 + Week 7 CO Module 7)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-troubleshoot-a-common-issue-week-10-co-module-10">Step 6 — Troubleshoot a common issue (Week 10, CO Module 10)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-7-prepare-the-operations-report-week-15">Step 7 — Prepare the operations report (Week 15)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mco2-documentation-template">MCO2 Documentation Template</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mco2-operations-report-template">MCO2 Operations Report Template</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recommendations-for-production">7. Recommendations for Production</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sources">8. Sources</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Sources</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By SAM10 Systems Administration and Management | College of Computer Science | Angeles University Foundation | R.L.Natividad
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

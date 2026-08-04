@@ -1,0 +1,839 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Cloud Computing and Virtualization Fundamentals &#8212; Systems Administration and Maintenance (SAM10)</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=c73c0f3e"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chap02/ch02';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Identity, Access Management, and Governance" href="../chap03/ch03.html" />
+    <link rel="prev" title="Foundations of Systems" href="../chap01/ch01.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../_static/cover.svg" class="logo__image only-light" alt="Systems Administration and Maintenance (SAM10) - Home"/>
+    <img src="../_static/cover.svg" class="logo__image only-dark pst-js-only" alt="Systems Administration and Maintenance (SAM10) - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Part I — Foundations</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chap01/ch01.html">Foundations of Systems</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Cloud Computing and Virtualization Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap03/ch03.html">Identity, Access Management, and Governance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap04/ch04.html">Computer Networks and Cloud Networking</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part II — Infrastructure &amp; Systems Administration</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chap05/ch05.html">Compute Infrastructure Administration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap06/ch06.html">Linux Systems Administration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap07/ch07.html">Storage Administration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap08/ch08.html">Database Administration</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part III — Services, Security &amp; Reliability</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chap09/ch09.html">Web and Application Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap10/ch10.html">Monitoring, Logging, and Performance Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap11/ch11.html">Cloud Security Administration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap12/ch12.html">High Availability, Scalability, and Reliability Engineering</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part IV — Operations, Maintenance &amp; Architecture</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chap13/ch13.html">Backup, Disaster Recovery, and Business Continuity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap14/ch14.html">Systems Maintenance, Automation, and IT Service Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap15/ch15.html">Cloud Architecture, Optimization, and the Well-Architected Framework</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part V — Laboratory Exercises</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../labs/semester-plan.html">SAM10 Semester Plan · AWS Cloud Foundations + Cloud Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../labs/lab00.html">Lab 0 — Course Orientation &amp; Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../labs/lab01.html">Lab 1 — Module 1: Cloud Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../labs/lab02.html">Lab 2 — Module 2: Technology Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../labs/lab03.html">Lab 3 — Module 3: Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../labs/lab04.html">Lab 4 — Module 4: Compute &amp; Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../labs/lab05.html">Lab 5 — Module 5: Networking &amp; Content Delivery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../labs/lab06.html">Lab 6 — Module 6: Databases &amp; Analytics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../labs/lab07.html">Lab 7 — Module 7: Infrastructure as Code (AWS Cloud Operations)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../labs/lab08.html">Lab 8 — Module 8: Monitoring &amp; Observability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../labs/lab09.html">Lab 9 — Module 9: Logging &amp; Auditing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../labs/lab10.html">Lab 10 — Module 10: Incident Response</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../labs/lab11.html">Lab 11 — Module 11: Backup &amp; Disaster Recovery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../labs/lab12.html">Lab 12 — Module 12: Cost Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../labs/lab13.html">Lab 13 — Module 13: Deployment Strategies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../labs/lab14.html">Lab 14 — Module 14: Well-Architected Reviews</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../labs/lab15.html">Lab 15 — Module 15: Automation &amp; DevOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MCO1_AWS_Infrastructure_Deployment.html">MCO1 — AWS Infrastructure Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MCO2_Systems_Administration_Maintenance.html">MCO2 — Systems Administration and Maintenance</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/chap02/ch02.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Cloud Computing and Virtualization Fundamentals</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cloud-service-models">Cloud Service Models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deployment-models">Deployment Models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distributed-systems">Distributed Systems</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#goals-scalability-availability-performance">Goals: scalability, availability, performance.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problems-the-8-fallacies">Problems (the 8 Fallacies)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#virtualization-theory">Virtualization Theory</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#containers-vs-virtual-machines">Containers vs. Virtual Machines</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aws-compute-overview-pricing">AWS Compute Overview &amp; Pricing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checkpoint">Checkpoint</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sources">Sources</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="cloud-computing-and-virtualization-fundamentals">
+<h1>Cloud Computing and Virtualization Fundamentals<a class="headerlink" href="#cloud-computing-and-virtualization-fundamentals" title="Link to this heading">#</a></h1>
+<section id="learning-objectives">
+<h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Distinguish <strong>IaaS / PaaS / SaaS</strong> and deployment models.</p></li>
+<li><p>Define <strong>distributed systems</strong> and the 8 Fallacies.</p></li>
+<li><p>Explain <strong>virtualization</strong> and the <strong>hypervisor</strong> role.</p></li>
+<li><p>Compare <strong>containers vs VMs</strong>.</p></li>
+<li><p>Overview <strong>AWS Compute</strong> families and <strong>pricing/billing</strong> levers.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="cloud-service-models">
+<h2>Cloud Service Models<a class="headerlink" href="#cloud-service-models" title="Link to this heading">#</a></h2>
+<p>Cloud delivers compute/storage/networking over the internet nist_cloud_sd with <strong>pay-as-you-go</strong> pricing.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Model</p></th>
+<th class="head"><p>You manage</p></th>
+<th class="head"><p>Provider manages</p></th>
+<th class="head"><p>AWS example</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>IaaS</strong></p></td>
+<td><p>OS + runtime + data + apps</p></td>
+<td><p>virtualization, hosts, storage, network</p></td>
+<td><p>EC2</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>PaaS</strong></p></td>
+<td><p>data + apps</p></td>
+<td><p>runtime/OS/middleware/infra</p></td>
+<td><p>RDS, Elastic Beanstalk</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>SaaS</strong></p></td>
+<td><p>(just use it)</p></td>
+<td><p>everything</p></td>
+<td><p>Gmail / M365</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="note docutils">
+<p>You manage ↓ SaaS (least control) … PaaS … IaaS (most control) ↑ AWS manages the rest underneath</p>
+</div>
+<p>NIST five characteristics: on-demand self-service, broad network access, resource pooling,
+rapid elasticity, measured (metered) service.</p>
+</section>
+<hr class="docutils" />
+<section id="deployment-models">
+<h2>Deployment Models<a class="headerlink" href="#deployment-models" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Model</p></th>
+<th class="head"><p>Definition</p></th>
+<th class="head"><p>When to use</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Public</strong></p></td>
+<td><p>provider-owned, multi-tenant</p></td>
+<td><p>agility, low upfront</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Private</strong></p></td>
+<td><p>dedicated to one org</p></td>
+<td><p>strict control/compliance</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Hybrid</strong></p></td>
+<td><p>public + private linked</p></td>
+<td><p>burst, legacy, data gravity</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Multi-cloud</strong></p></td>
+<td><p>several public providers</p></td>
+<td><p>avoid lock-in</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Your <strong>shared-responsibility</strong> and lifecycle choices (which provider secures what) depend on
+the deployment model you choose.</p>
+</div>
+</section>
+<hr class="docutils" />
+<section id="distributed-systems">
+<h2>Distributed Systems<a class="headerlink" href="#distributed-systems" title="Link to this heading">#</a></h2>
+<p>A <strong>distributed system</strong> appears to users as a single coherent system but
+is spread across multiple computers (the Web, DNS, microservices, S3).</p>
+<section id="goals-scalability-availability-performance">
+<h3>Goals: scalability, availability, performance.<a class="headerlink" href="#goals-scalability-availability-performance" title="Link to this heading">#</a></h3>
+</section>
+<section id="problems-the-8-fallacies">
+<h3>Problems (the 8 Fallacies)<a class="headerlink" href="#problems-the-8-fallacies" title="Link to this heading">#</a></h3>
+<p>Networks are <em>not</em> reliable, fast, limitless-bandwidth, secure, stable-topology, single-admin,
+zero-cost, or homogeneous. Assume <strong>partial failure</strong> and design for it.</p>
+<div class="note docutils">
+<p>Design: no single point of failure (SPOF) + any component may fail at any time</p>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="virtualization-theory">
+<h2>Virtualization Theory<a class="headerlink" href="#virtualization-theory" title="Link to this heading">#</a></h2>
+<p><strong>Virtualization</strong> runs many isolated guest OSes on one physical host via a <strong>hypervisor</strong>
+(VMM), which schedules CPU/memory, multiplexes I/O, and isolates tenants.</p>
+<figure class="align-center" id="id1">
+<a class="reference internal image-reference" href="../_images/virt.svg"><img alt="../_images/virt.svg" src="../_images/virt.svg" style="width: 85%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">A hypervisor isolates guest VMs on shared hardware (CPU, memory, disk, NIC).</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Hypervisor type</p></th>
+<th class="head"><p>Runs on</p></th>
+<th class="head"><p>Examples</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Type I (bare-metal)</strong></p></td>
+<td><p>hardware directly</p></td>
+<td><p>ESXi, KVM, Hyper-V, Xen</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Type II (hosted)</strong></p></td>
+<td><p>host OS</p></td>
+<td><p>VirtualBox, VMware Workstation</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Modern CPUs ship <strong>virtualization extensions (Intel VT-x / AMD-V)</strong> that accelerate the process.</p>
+</section>
+<hr class="docutils" />
+<section id="containers-vs-virtual-machines">
+<h2>Containers vs. Virtual Machines<a class="headerlink" href="#containers-vs-virtual-machines" title="Link to this heading">#</a></h2>
+<figure class="align-center" id="id2">
+<a class="reference internal image-reference" href="../_images/containers_vm.svg"><img alt="../_images/containers_vm.svg" src="../_images/containers_vm.svg" style="width: 95%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">VMs virtualize hardware (full OS each); containers share the host kernel and isolate apps.</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Attribute</p></th>
+<th class="head"><p>Virtual Machine</p></th>
+<th class="head"><p>Container</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Abstraction</p></td>
+<td><p>hardware</p></td>
+<td><p>OS/kernel</p></td>
+</tr>
+<tr class="row-odd"><td><p>Isolation</p></td>
+<td><p>guest OS boundary</p></td>
+<td><p>namespace/cgroups</p></td>
+</tr>
+<tr class="row-even"><td><p>Overhead</p></td>
+<td><p>high (full OS)</p></td>
+<td><p>low (shared kernel)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Startup</p></td>
+<td><p>seconds-minutes</p></td>
+<td><p>milliseconds-seconds</p></td>
+</tr>
+<tr class="row-even"><td><p>Image size</p></td>
+<td><p>GBs</p></td>
+<td><p>MBs</p></td>
+</tr>
+<tr class="row-odd"><td><p>Density</p></td>
+<td><p>~tens/host</p></td>
+<td><p>~hundreds/host</p></td>
+</tr>
+<tr class="row-even"><td><p>Use</p></td>
+<td><p>isolation/legacy</p></td>
+<td><p>microservices, CI/CD</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Prefer <strong>containers</strong> for portable, fast-scaling apps; <strong>VMs</strong> for strong isolation or
+heterogeneous OSes. They often <em>coexist</em> on the same host.</p>
+</div>
+</section>
+<hr class="docutils" />
+<section id="aws-compute-overview-pricing">
+<h2>AWS Compute Overview &amp; Pricing<a class="headerlink" href="#aws-compute-overview-pricing" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Service</p></th>
+<th class="head"><p>Category</p></th>
+<th class="head"><p>Best for</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>EC2</strong></p></td>
+<td><p>VMs</p></td>
+<td><p>custom OS, AMI control</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>ECS/EKS/Fargate</strong></p></td>
+<td><p>containers</p></td>
+<td><p>Docker, managed K8s, serverless containers</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Lambda</strong></p></td>
+<td><p>serverless</p></td>
+<td><p>event-driven code</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Elastic Beanstalk</strong></p></td>
+<td><p>PaaS</p></td>
+<td><p>deploy apps quickly</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Batch</strong></p></td>
+<td><p>HPC-like</p></td>
+<td><p>large parallel jobs</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Pricing levers</strong>: On-Demand (no commit) → <strong>Savings Plans/Reserved</strong> (1–3 yr commit) → <strong>Spot</strong>
+(up to ~90% off, interruptible) for fault-tolerant/batch work; <strong>Free Tier</strong> for students.</p>
+<div class="math notranslate nohighlight">
+\[
+\text{monthly EC2 cost} \approx \text{rate}_{\$/hour} \times 730 + \text{EBS} + \text{data out}
+\]</div>
+</section>
+<hr class="docutils" />
+<section id="checkpoint">
+<h2>Checkpoint<a class="headerlink" href="#checkpoint" title="Link to this heading">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Q1. Which model — SaaS, PaaS, or IaaS — gives the most customer control?</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text"><strong>Answer.</strong> <strong>IaaS</strong> (you manage OS, runtime, data, apps). SaaS gives the least.</p>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Q2. Give the two hypervisor types and one example of each.</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text"><strong>Answer.</strong> Type I bare-metal (e.g., ESXi/KVM); Type II hosted (e.g., VirtualBox).</p>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Q3. Why are containers lighter than VMs, and what is the key trade-off?</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text"><strong>Answer.</strong> They share the host kernel (no guest OS), so they boot faster and are smaller;
+trade-off is weaker isolation than a full VM.</p>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Q4. When is a Spot Instance appropriate, and what is its main risk?</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text"><strong>Answer.</strong> For stateless/batch/fault-tolerant work; risk: it can be <strong>interrupted</strong> with short notice.</p>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Q5. In the AWS pricing model, what dimension does Data Transfer OUT belong to, and why watch it?</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text"><strong>Answer.</strong> Data transfer (network egress) pricing; egress from AWS is a major bill driver,
+so compress/edge-cache (CloudFront) and avoid cross-region chatter.</p>
+</div>
+</details></section>
+<hr class="docutils" />
+<section id="sources">
+<h2>Sources<a class="headerlink" href="#sources" title="Link to this heading">#</a></h2>
+<p>The concepts in this chapter are summarized from the following authoritative sources:</p>
+<ul class="simple">
+<li><p>NIST definition of cloud computing (SP 800-145): <a class="reference external" href="https://csrc.nist.gov/publications/detail/sp/800-145/final">https://csrc.nist.gov/publications/detail/sp/800-145/final</a></p></li>
+<li><p>Distributed systems fallacies: Tanenbaum &amp; van Steen, <em>Distributed Systems: Principles and Paradigms</em></p></li>
+<li><p>AWS compute services: <a class="reference external" href="https://aws.amazon.com/products/compute/">https://aws.amazon.com/products/compute/</a></p></li>
+<li><p>AWS pricing: <a class="reference external" href="https://aws.amazon.com/ec2/pricing/">https://aws.amazon.com/ec2/pricing/</a></p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chap02"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../chap01/ch01.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Foundations of Systems</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../chap03/ch03.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Identity, Access Management, and Governance</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cloud-service-models">Cloud Service Models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deployment-models">Deployment Models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distributed-systems">Distributed Systems</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#goals-scalability-availability-performance">Goals: scalability, availability, performance.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problems-the-8-fallacies">Problems (the 8 Fallacies)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#virtualization-theory">Virtualization Theory</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#containers-vs-virtual-machines">Containers vs. Virtual Machines</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aws-compute-overview-pricing">AWS Compute Overview &amp; Pricing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checkpoint">Checkpoint</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sources">Sources</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By SAM10 Systems Administration and Management | College of Computer Science | Angeles University Foundation | R.L.Natividad
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,814 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Compute Infrastructure Administration &#8212; Systems Administration and Maintenance (SAM10)</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=c73c0f3e"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chap05/ch05';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Linux Systems Administration" href="../chap06/ch06.html" />
+    <link rel="prev" title="Computer Networks and Cloud Networking" href="../chap04/ch04.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="../_static/cover.svg" class="logo__image only-light" alt="Systems Administration and Maintenance (SAM10) - Home"/>
+    <img src="../_static/cover.svg" class="logo__image only-dark pst-js-only" alt="Systems Administration and Maintenance (SAM10) - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Part I — Foundations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chap01/ch01.html">Foundations of Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap02/ch02.html">Cloud Computing and Virtualization Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap03/ch03.html">Identity, Access Management, and Governance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap04/ch04.html">Computer Networks and Cloud Networking</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part II — Infrastructure &amp; Systems Administration</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Compute Infrastructure Administration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap06/ch06.html">Linux Systems Administration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap07/ch07.html">Storage Administration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap08/ch08.html">Database Administration</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part III — Services, Security &amp; Reliability</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chap09/ch09.html">Web and Application Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap10/ch10.html">Monitoring, Logging, and Performance Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap11/ch11.html">Cloud Security Administration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap12/ch12.html">High Availability, Scalability, and Reliability Engineering</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part IV — Operations, Maintenance &amp; Architecture</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chap13/ch13.html">Backup, Disaster Recovery, and Business Continuity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap14/ch14.html">Systems Maintenance, Automation, and IT Service Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chap15/ch15.html">Cloud Architecture, Optimization, and the Well-Architected Framework</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part V — Laboratory Exercises</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../labs/semester-plan.html">SAM10 Semester Plan · AWS Cloud Foundations + Cloud Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../labs/lab00.html">Lab 0 — Course Orientation &amp; Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../labs/lab01.html">Lab 1 — Module 1: Cloud Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../labs/lab02.html">Lab 2 — Module 2: Technology Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../labs/lab03.html">Lab 3 — Module 3: Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../labs/lab04.html">Lab 4 — Module 4: Compute &amp; Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../labs/lab05.html">Lab 5 — Module 5: Networking &amp; Content Delivery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../labs/lab06.html">Lab 6 — Module 6: Databases &amp; Analytics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../labs/lab07.html">Lab 7 — Module 7: Infrastructure as Code (AWS Cloud Operations)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../labs/lab08.html">Lab 8 — Module 8: Monitoring &amp; Observability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../labs/lab09.html">Lab 9 — Module 9: Logging &amp; Auditing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../labs/lab10.html">Lab 10 — Module 10: Incident Response</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../labs/lab11.html">Lab 11 — Module 11: Backup &amp; Disaster Recovery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../labs/lab12.html">Lab 12 — Module 12: Cost Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../labs/lab13.html">Lab 13 — Module 13: Deployment Strategies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../labs/lab14.html">Lab 14 — Module 14: Well-Architected Reviews</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../labs/lab15.html">Lab 15 — Module 15: Automation &amp; DevOps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MCO1_AWS_Infrastructure_Deployment.html">MCO1 — AWS Infrastructure Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../MCO2_Systems_Administration_Maintenance.html">MCO2 — Systems Administration and Maintenance</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/chap05/ch05.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Compute Infrastructure Administration</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#amazon-ec2">Amazon EC2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#amazon-machine-images-ami">Amazon Machine Images (AMI)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instance-types">Instance Types</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#launch-templates-configurations">Launch Templates &amp; Configurations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#infrastructure-provisioning-cloudformation">Infrastructure Provisioning &amp; CloudFormation</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cloudformation-yaml-the-infrastructure-as-code-core">CloudFormation (YAML, the “Infrastructure as Code” core)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checkpoint">Checkpoint</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sources">Sources</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="compute-infrastructure-administration">
+<h1>Compute Infrastructure Administration<a class="headerlink" href="#compute-infrastructure-administration" title="Link to this heading">#</a></h1>
+<section id="learning-objectives">
+<h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Launch and manage <strong>Amazon EC2</strong> instances.</p></li>
+<li><p>Use <strong>AMIs</strong> and pick <strong>instance types</strong>.</p></li>
+<li><p>Drive consistent provisioning with <strong>Launch Templates</strong>.</p></li>
+<li><p>Understand <strong>Infrastructure Provisioning</strong> and <strong>AWS CloudFormation</strong> basics.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="amazon-ec2">
+<h2>Amazon EC2<a class="headerlink" href="#amazon-ec2" title="Link to this heading">#</a></h2>
+<p><strong>Amazon EC2</strong> provides resizable <strong>virtual servers</strong> (“instances”) across Regions/AZs.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Concept</p></th>
+<th class="head"><p>What it is</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Instance</strong></p></td>
+<td><p>a running virtual server</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>AMI</strong></p></td>
+<td><p>bootable template (OS + app + config)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Instance type</strong></p></td>
+<td><p>vCPU/RAM/storage profile</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Key pair</strong></p></td>
+<td><p>SSH key for Linux login</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Security group</strong></p></td>
+<td><p>instance firewall (Ch 4)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Lifecycle</strong>: launch → run (has a private/public IP) → connect (SSH) → configure →
+stop/restart/replace/terminate.</p>
+</section>
+<hr class="docutils" />
+<section id="amazon-machine-images-ami">
+<h2>Amazon Machine Images (AMI)<a class="headerlink" href="#amazon-machine-images-ami" title="Link to this heading">#</a></h2>
+<p>An <strong>AMI</strong> is a <em>golden image</em>: a reusable template to boot a consistent instance.</p>
+<figure class="align-center" id="id1">
+<a class="reference internal image-reference" href="../_images/ec2_ami.svg"><img alt="../_images/ec2_ami.svg" src="../_images/ec2_ami.svg" style="width: 90%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 11 </span><span class="caption-text">AMI feeds a Launch Template; Auto Scaling launches many; the LB target group receives their traffic.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Property</p></th>
+<th class="head"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Region</strong></p></td>
+<td><p>AMIs are regional — <em>copy</em> across regions</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Architecture</strong></p></td>
+<td><p>x86-64 vs arm64 (Graviton) must match instance type</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Image type</strong></p></td>
+<td><p>EBS-backed (default) / instance-store</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Permissions</strong></p></td>
+<td><p>public, private (shared)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Bake a base OS + common tooling into the AMI so every launch starts identical and fast
+(“infrastructure as <em>immutable</em> images”).</p>
+</section>
+<hr class="docutils" />
+<section id="instance-types">
+<h2>Instance Types<a class="headerlink" href="#instance-types" title="Link to this heading">#</a></h2>
+<p>Choose by workload. Each family tunes the vCPU:memory ratio and the underlying hardware.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Family</p></th>
+<th class="head"><p>Tune</p></th>
+<th class="head"><p>Example</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>T</strong></p></td>
+<td><p>burstable general</p></td>
+<td><p>t3.micro, t4g.small</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>M</strong></p></td>
+<td><p>general balance</p></td>
+<td><p>m5, m7g</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>C</strong></p></td>
+<td><p>compute-heavy</p></td>
+<td><p>c5, c7g</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>R</strong></p></td>
+<td><p>memory-heavy</p></td>
+<td><p>r5, x2ie</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>X/I</strong></p></td>
+<td><p>extreme memory/IO</p></td>
+<td><p>x1e, i3</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>P/G/Inf</strong></p></td>
+<td><p>GPU/ML</p></td>
+<td><p>p3, g4dn, inf1</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Z</strong></p></td>
+<td><p>low latency</p></td>
+<td><p>z1d</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="note docutils">
+<p>cost per vCPU-hour = OnDemand price / number of vCPUs  — right-size by measuring CPU!</p>
+</div>
+</section>
+<hr class="docutils" />
+<section id="launch-templates-configurations">
+<h2>Launch Templates &amp; Configurations<a class="headerlink" href="#launch-templates-configurations" title="Link to this heading">#</a></h2>
+<p>A <strong>Launch Template</strong> captures the <em>launch spec</em> (AMI, instance type, key pair, SGs, user
+data, IAM role) so instances launch identically.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Mechanism</p></th>
+<th class="head"><p>Used by</p></th>
+<th class="head"><p>Mutability</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Launch Template</strong></p></td>
+<td><p>EC2, ASG, Spot Fleet</p></td>
+<td><p>versioned &amp; updatable (modern)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Launch Configuration</strong></p></td>
+<td><p>ASG (classic)</p></td>
+<td><p>immutable (legacy; avoid)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Always template your standard images so <strong>Auto Scaling</strong> reproduces them.</p>
+</section>
+<hr class="docutils" />
+<section id="infrastructure-provisioning-cloudformation">
+<h2>Infrastructure Provisioning &amp; CloudFormation<a class="headerlink" href="#infrastructure-provisioning-cloudformation" title="Link to this heading">#</a></h2>
+<p><strong>Provisioning</strong> = creating IaC rather than manual clicks. Tools: <strong>CloudFormation</strong>,
+Terraform, CDK, plus config-management (Ansible/Puppet).</p>
+<section id="cloudformation-yaml-the-infrastructure-as-code-core">
+<h3>CloudFormation (YAML, the “Infrastructure as Code” core)<a class="headerlink" href="#cloudformation-yaml-the-infrastructure-as-code-core" title="Link to this heading">#</a></h3>
+<p>A <strong>stack</strong> is a set of resources managed as a unit, declared in a template.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">AWSTemplateFormatVersion</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2010-09-09&quot;</span>
+<span class="nt">Parameters</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">InstanceType</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">Type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">String</span>
+<span class="w">    </span><span class="nt">Default</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">t3.micro</span>
+<span class="nt">Resources</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">WebServer</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">Type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AWS::EC2::Instance</span>
+<span class="w">    </span><span class="nt">Properties</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">ImageId</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ami-0abcdef1234567890</span>
+<span class="w">      </span><span class="nt">InstanceType</span><span class="p">:</span><span class="w"> </span><span class="kt">!Ref</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InstanceType</span>
+<span class="w">      </span><span class="nt">SecurityGroupIds</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;sg-...&quot;</span><span class="p p-Indicator">]</span>
+<span class="nt">Outputs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">PublicIP</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">Value</span><span class="p">:</span><span class="w"> </span><span class="kt">!Ref</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">WebServer</span>
+</pre></div>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Construct</p></th>
+<th class="head"><p>Role</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Resources</strong></p></td>
+<td><p>what to create (EC2, RDS, S3…)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Parameters</strong></p></td>
+<td><p>inputs (no hard-coding)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Mappings</strong></p></td>
+<td><p>lookup tables</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Conditions</strong></p></td>
+<td><p>conditional creation</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Outputs</strong></p></td>
+<td><p>values shared to other stacks</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul class="simple">
+<li><p><strong>Pseudo-parameters</strong>: <code class="docutils literal notranslate"><span class="pre">AWS::Region</span></code>, <code class="docutils literal notranslate"><span class="pre">AWS::AccountId</span></code>, <code class="docutils literal notranslate"><span class="pre">AWS::StackName</span></code>.</p></li>
+<li><p><strong>Functions</strong>: <code class="docutils literal notranslate"><span class="pre">Ref</span></code>, <code class="docutils literal notranslate"><span class="pre">Fn::GetAtt</span></code>, <code class="docutils literal notranslate"><span class="pre">Fn::Sub</span></code>, <code class="docutils literal notranslate"><span class="pre">Fn::ImportValue</span></code> (cross-stack).</p></li>
+<li><p>Change <strong>sets</strong> preview changes; <strong>drift detection</strong> catches manual edits.</p></li>
+</ul>
+<div class="note docutils">
+<p>Always treat infrastructure as code: version it, review diffs, test in a dev account, promote via pipelines.</p>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="checkpoint">
+<h2>Checkpoint<a class="headerlink" href="#checkpoint" title="Link to this heading">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Q1. What four-letter AWS compute service gives resizable VMs, and how are they billed?</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text"><strong>Answer.</strong> <strong>EC2</strong>; billed per-second (or hour) of running time plus EBS + data-transfer.</p>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Q2. Why should an AMI’s region/architecture match its instance type?</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text"><strong>Answer.</strong> AMIs are <em>regional</em> (copy to use elsewhere) and must match the instance’s CPU
+<strong>architecture</strong> (arm64 image on arm64 instance, etc.).</p>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Q3. Which CloudFormation construct exports a stack’s value to other stacks, and which function imports it?</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text"><strong>Answer.</strong> <code class="docutils literal notranslate"><span class="pre">Outputs</span></code> export; the consumer reads them via <code class="docutils literal notranslate"><span class="pre">Fn::ImportValue</span></code>.</p>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Q4. Give one benefit and one risk of right-sizing an instance family choice.</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text"><strong>Answer.</strong> Benefit: lower cost / better utilization; risk: a too-small family can throttle
+CPU credits (T) or run out of memory for the workload.</p>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Q5. What is the safe deployment order for a new launch template version used by an ASG?</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text"><strong>Answer.</strong> Create a new <em>version</em> → edit the ASG to use it → let new instances launch with it
+while draining old ones, so a bad template can’t break the whole pool instantly.</p>
+</div>
+</details></section>
+<hr class="docutils" />
+<section id="sources">
+<h2>Sources<a class="headerlink" href="#sources" title="Link to this heading">#</a></h2>
+<p>The concepts in this chapter are summarized from the following authoritative sources:</p>
+<ul class="simple">
+<li><p>Amazon EC2 User Guide: <a class="reference external" href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/">https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/</a></p></li>
+<li><p>AWS CloudFormation User Guide: <a class="reference external" href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/</a></p></li>
+<li><p>Auto Scaling User Guide: <a class="reference external" href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/">https://docs.aws.amazon.com/autoscaling/ec2/userguide/</a></p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chap05"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../chap04/ch04.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Computer Networks and Cloud Networking</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../chap06/ch06.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Linux Systems Administration</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#amazon-ec2">Amazon EC2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#amazon-machine-images-ami">Amazon Machine Images (AMI)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instance-types">Instance Types</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#launch-templates-configurations">Launch Templates &amp; Configurations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#infrastructure-provisioning-cloudformation">Infrastructure Provisioning &amp; CloudFormation</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cloudformation-yaml-the-infrastructure-as-code-core">CloudFormation (YAML, the “Infrastructure as Code” core)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checkpoint">Checkpoint</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sources">Sources</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By SAM10 Systems Administration and Management | College of Computer Science | Angeles University Foundation | R.L.Natividad
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

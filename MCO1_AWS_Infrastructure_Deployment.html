@@ -1,0 +1,1151 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" data-theme="light">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>MCO1 — AWS Infrastructure Deployment &#8212; Systems Administration and Maintenance (SAM10)</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="_static/documentation_options.js?v=c73c0f3e"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'MCO1_AWS_Infrastructure_Deployment';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="MCO2 — Systems Administration and Maintenance" href="MCO2_Systems_Administration_Maintenance.html" />
+    <link rel="prev" title="Lab 15 — Module 15: Automation &amp; DevOps" href="labs/lab15.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="light">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+    
+    <img src="_static/cover.svg" class="logo__image only-light" alt="Systems Administration and Maintenance (SAM10) - Home"/>
+    <img src="_static/cover.svg" class="logo__image only-dark pst-js-only" alt="Systems Administration and Maintenance (SAM10) - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Part I — Foundations</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chap01/ch01.html">Foundations of Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap02/ch02.html">Cloud Computing and Virtualization Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap03/ch03.html">Identity, Access Management, and Governance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap04/ch04.html">Computer Networks and Cloud Networking</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part II — Infrastructure &amp; Systems Administration</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chap05/ch05.html">Compute Infrastructure Administration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap06/ch06.html">Linux Systems Administration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap07/ch07.html">Storage Administration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap08/ch08.html">Database Administration</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part III — Services, Security &amp; Reliability</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chap09/ch09.html">Web and Application Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap10/ch10.html">Monitoring, Logging, and Performance Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap11/ch11.html">Cloud Security Administration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap12/ch12.html">High Availability, Scalability, and Reliability Engineering</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part IV — Operations, Maintenance &amp; Architecture</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chap13/ch13.html">Backup, Disaster Recovery, and Business Continuity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap14/ch14.html">Systems Maintenance, Automation, and IT Service Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap15/ch15.html">Cloud Architecture, Optimization, and the Well-Architected Framework</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part V — Laboratory Exercises</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="labs/semester-plan.html">SAM10 Semester Plan · AWS Cloud Foundations + Cloud Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="labs/lab00.html">Lab 0 — Course Orientation &amp; Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="labs/lab01.html">Lab 1 — Module 1: Cloud Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="labs/lab02.html">Lab 2 — Module 2: Technology Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="labs/lab03.html">Lab 3 — Module 3: Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="labs/lab04.html">Lab 4 — Module 4: Compute &amp; Storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="labs/lab05.html">Lab 5 — Module 5: Networking &amp; Content Delivery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="labs/lab06.html">Lab 6 — Module 6: Databases &amp; Analytics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="labs/lab07.html">Lab 7 — Module 7: Infrastructure as Code (AWS Cloud Operations)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="labs/lab08.html">Lab 8 — Module 8: Monitoring &amp; Observability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="labs/lab09.html">Lab 9 — Module 9: Logging &amp; Auditing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="labs/lab10.html">Lab 10 — Module 10: Incident Response</a></li>
+<li class="toctree-l1"><a class="reference internal" href="labs/lab11.html">Lab 11 — Module 11: Backup &amp; Disaster Recovery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="labs/lab12.html">Lab 12 — Module 12: Cost Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="labs/lab13.html">Lab 13 — Module 13: Deployment Strategies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="labs/lab14.html">Lab 14 — Module 14: Well-Architected Reviews</a></li>
+<li class="toctree-l1"><a class="reference internal" href="labs/lab15.html">Lab 15 — Module 15: Automation &amp; DevOps</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">MCO1 — AWS Infrastructure Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MCO2_Systems_Administration_Maintenance.html">MCO2 — Systems Administration and Maintenance</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/MCO1_AWS_Infrastructure_Deployment.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>MCO1 — AWS Infrastructure Deployment</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-outcomes">Learning outcomes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-instruction-guide">Step-by-step instruction guide</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-architecture-design-week-3-after-cf-module-4">Step 1 — Architecture design (Week 3, after CF Module 4)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-create-the-vpc-and-networking-week-4-after-cf-module-5">Step 2 — Create the VPC and networking (Week 4, after CF Module 5)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-create-a-nat-gateway-week-4">Step 3 — Create a NAT Gateway (Week 4)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-create-security-groups-week-4">Step 4 — Create security groups (Week 4)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-launch-ec2-instances-week-5-after-cf-module-4">Step 5 — Launch EC2 instances (Week 5, after CF Module 4)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-configure-the-web-server-week-5">Step 6 — Configure the web server (Week 5)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-7-create-an-s3-bucket-week-5-after-cf-module-4">Step 7 — Create an S3 bucket (Week 5, after CF Module 4)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-8-provision-an-rds-instance-week-6-after-cf-module-6">Step 8 — Provision an RDS instance (Week 6, after CF Module 6)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-9-tag-all-resources-week-6">Step 9 — Tag all resources (Week 6)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-10-prove-the-environment-is-functional-secure-and-properly-configured-week-6">Step 10 — Prove the environment is functional, secure, and properly configured (Week 6)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mco1-documentation-template">MCO1 Documentation Template</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mco1-report-template">MCO1 Report Template</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checkpoint-questions">Checkpoint Questions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sources">Sources</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="mco1-aws-infrastructure-deployment">
+<h1>MCO1 — AWS Infrastructure Deployment<a class="headerlink" href="#mco1-aws-infrastructure-deployment" title="Link to this heading">#</a></h1>
+<p><strong>Major Course Output 1</strong> · Weeks 1–6 · Weight: 40% of Part V grade</p>
+<section id="learning-outcomes">
+<h2>Learning outcomes<a class="headerlink" href="#learning-outcomes" title="Link to this heading">#</a></h2>
+<p>By the end of this MCO you will be able to:</p>
+<ol class="arabic simple">
+<li><p>Design a secure, multi-tier cloud architecture on AWS.</p></li>
+<li><p>Deploy a VPC with public and private subnets across two Availability Zones.</p></li>
+<li><p>Launch EC2 instances, attach EBS volumes, and configure security groups.</p></li>
+<li><p>Provision an S3 bucket for static assets and an RDS instance for a database.</p></li>
+<li><p>Document the architecture with a diagram and a configuration matrix.</p></li>
+<li><p>Prove the environment is functional (end-to-end HTTP), secure (least-privilege IAM), and properly configured (tags, naming conventions).</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="step-by-step-instruction-guide">
+<h2>Step-by-step instruction guide<a class="headerlink" href="#step-by-step-instruction-guide" title="Link to this heading">#</a></h2>
+<section id="step-1-architecture-design-week-3-after-cf-module-4">
+<h3>Step 1 — Architecture design (Week 3, after CF Module 4)<a class="headerlink" href="#step-1-architecture-design-week-3-after-cf-module-4" title="Link to this heading">#</a></h3>
+<p><strong>Task:</strong> Draw your target architecture on paper or in a tool (<a class="reference external" href="http://draw.io">draw.io</a>, Excalidraw, or a hand sketch).</p>
+<p>Your architecture must include:</p>
+<ul class="simple">
+<li><p>1 VPC with a CIDR block (e.g., <code class="docutils literal notranslate"><span class="pre">10.0.0.0/16</span></code>).</p></li>
+<li><p>2 public subnets (one per AZ) for the web/ALB tier.</p></li>
+<li><p>2 private subnets (one per AZ) for the app/DB tier.</p></li>
+<li><p>1 Internet Gateway attached to the VPC.</p></li>
+<li><p>1 NAT Gateway in a public subnet (for private subnet outbound access).</p></li>
+<li><p>Route tables: public subnets → IGW; private subnets → NAT.</p></li>
+<li><p>At least 1 EC2 instance in a public subnet (web server).</p></li>
+<li><p>1 RDS instance in a private subnet (database).</p></li>
+<li><p>1 S3 bucket for static assets.</p></li>
+</ul>
+<p><strong>Deliverable:</strong> <code class="docutils literal notranslate"><span class="pre">mco1-architecture.pdf</span></code> or <code class="docutils literal notranslate"><span class="pre">mco1-architecture.png</span></code> — a labelled diagram showing all components and their connections.</p>
+<p><strong>Template (dummy content — replace with your real values):</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>┌─────────────────────────────────────────────────────────────┐
+│                     VPC 10.0.0.0/16                        │
+│                                                             │
+│  ┌─────────────────────┐    ┌─────────────────────────┐   │
+│  │  Public Subnet AZ-a │    │  Public Subnet AZ-b     │   │
+│  │  10.0.1.0/24        │    │  10.0.2.0/24            │   │
+│  │                     │    │                         │   │
+│  │  ┌───────────────┐  │    │  ┌───────────────────┐  │   │
+│  │  │ EC2 Web Server │  │    │  │ EC2 Web Server     │  │   │
+│  │  │ (t3.micro)     │  │    │  │ (t3.micro)         │  │   │
+│  │  └───────────────┘  │    │  └───────────────────┘  │   │
+│  │  ┌───────────────┐  │    │  ┌───────────────────┐  │   │
+│  │  │ NAT Gateway    │  │    │  │ NAT Gateway        │  │   │
+│  │  └───────────────┘  │    │  └───────────────────┘  │   │
+│  └─────────────────────┘    └─────────────────────────┘   │
+│                                                             │
+│  ┌─────────────────────┐    ┌─────────────────────────┐   │
+│  │ Private Subnet AZ-a │    │ Private Subnet AZ-b     │   │
+│  │ 10.0.3.0/24         │    │ 10.0.4.0/24             │   │
+│  │                     │    │                         │   │
+│  │  ┌───────────────┐  │    │  ┌───────────────────┐  │   │
+│  │  │ RDS PostgreSQL │  │    │  │ RDS PostgreSQL     │  │   │
+│  │  │ (db.t3.micro)  │  │    │  │ (db.t3.micro)      │  │   │
+│  │  └───────────────┘  │    │  └───────────────────┘  │   │
+│  └─────────────────────┘    └─────────────────────────┘   │
+│                                                             │
+│  ┌─────────────────────────────────────────────────────┐   │
+│  │ S3 Bucket: gg-mco1-static-assets                    │   │
+│  └─────────────────────────────────────────────────────┘   │
+└─────────────────────────────────────────────────────────────┘
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="step-2-create-the-vpc-and-networking-week-4-after-cf-module-5">
+<h3>Step 2 — Create the VPC and networking (Week 4, after CF Module 5)<a class="headerlink" href="#step-2-create-the-vpc-and-networking-week-4-after-cf-module-5" title="Link to this heading">#</a></h3>
+<p><strong>Task:</strong> Use the AWS Console (or AWS CLI if you prefer) to create the VPC and all networking components.</p>
+<p><strong>Detailed instructions:</strong></p>
+<ol class="arabic simple">
+<li><p>Go to the AWS Console → VPC Dashboard.</p></li>
+<li><p>Click <strong>Create VPC</strong>:</p>
+<ul class="simple">
+<li><p>Name tag: <code class="docutils literal notranslate"><span class="pre">gg-mco1-vpc</span></code></p></li>
+<li><p>IPv4 CIDR block: <code class="docutils literal notranslate"><span class="pre">10.0.0.0/16</span></code></p></li>
+<li><p>Click <strong>Create VPC</strong></p></li>
+</ul>
+</li>
+<li><p>Create 2 public subnets:</p>
+<ul class="simple">
+<li><p><strong>Subnet 1</strong>: VPC = <code class="docutils literal notranslate"><span class="pre">gg-mco1-vpc</span></code>, CIDR = <code class="docutils literal notranslate"><span class="pre">10.0.1.0/24</span></code>, AZ = <code class="docutils literal notranslate"><span class="pre">ap-southeast-1a</span></code></p>
+<ul>
+<li><p>Name tag: <code class="docutils literal notranslate"><span class="pre">gg-mco1-public-a</span></code></p></li>
+<li><p>Auto-assign public IPv4: <strong>Enable</strong></p></li>
+</ul>
+</li>
+<li><p><strong>Subnet 2</strong>: VPC = <code class="docutils literal notranslate"><span class="pre">gg-mco1-vpc</span></code>, CIDR = <code class="docutils literal notranslate"><span class="pre">10.0.2.0/24</span></code>, AZ = <code class="docutils literal notranslate"><span class="pre">ap-southeast-1b</span></code></p>
+<ul>
+<li><p>Name tag: <code class="docutils literal notranslate"><span class="pre">gg-mco1-public-b</span></code></p></li>
+<li><p>Auto-assign public IPv4: <strong>Enable</strong></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Create 2 private subnets:</p>
+<ul class="simple">
+<li><p><strong>Subnet 3</strong>: VPC = <code class="docutils literal notranslate"><span class="pre">gg-mco1-vpc</span></code>, CIDR = <code class="docutils literal notranslate"><span class="pre">10.0.3.0/24</span></code>, AZ = <code class="docutils literal notranslate"><span class="pre">ap-southeast-1a</span></code></p>
+<ul>
+<li><p>Name tag: <code class="docutils literal notranslate"><span class="pre">gg-mco1-private-a</span></code></p></li>
+</ul>
+</li>
+<li><p><strong>Subnet 4</strong>: VPC = <code class="docutils literal notranslate"><span class="pre">gg-mco1-vpc</span></code>, CIDR = <code class="docutils literal notranslate"><span class="pre">10.0.4.0/24</span></code>, AZ = <code class="docutils literal notranslate"><span class="pre">ap-southeast-1b</span></code></p>
+<ul>
+<li><p>Name tag: <code class="docutils literal notranslate"><span class="pre">gg-mco1-private-b</span></code></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Create an Internet Gateway:</p>
+<ul class="simple">
+<li><p>Name tag: <code class="docutils literal notranslate"><span class="pre">gg-mco1-igw</span></code></p></li>
+<li><p>Attach to VPC: <code class="docutils literal notranslate"><span class="pre">gg-mco1-vpc</span></code></p></li>
+</ul>
+</li>
+<li><p>Create route tables:</p>
+<ul class="simple">
+<li><p><strong>Public RT</strong>: VPC = <code class="docutils literal notranslate"><span class="pre">gg-mco1-vpc</span></code></p>
+<ul>
+<li><p>Route: <code class="docutils literal notranslate"><span class="pre">0.0.0.0/0</span></code> → <code class="docutils literal notranslate"><span class="pre">igw-ggmco1</span></code></p></li>
+<li><p>Associate with: <code class="docutils literal notranslate"><span class="pre">gg-mco1-public-a</span></code> and <code class="docutils literal notranslate"><span class="pre">gg-mco1-public-b</span></code></p></li>
+</ul>
+</li>
+<li><p><strong>Private RT</strong>: VPC = <code class="docutils literal notranslate"><span class="pre">gg-mco1-vpc</span></code></p>
+<ul>
+<li><p>Route: <code class="docutils literal notranslate"><span class="pre">0.0.0.0/0</span></code> → NAT Gateway (create one in Step 3)</p></li>
+<li><p>Associate with: <code class="docutils literal notranslate"><span class="pre">gg-mco1-private-a</span></code> and <code class="docutils literal notranslate"><span class="pre">gg-mco1-private-b</span></code></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p><strong>Verify:</strong> From the VPC Dashboard, confirm all 4 subnets, 1 IGW, 2 route tables, and 1 NAT Gateway are listed and correctly associated.</p>
+<p><strong>Screenshot:</strong> Save a screenshot of the VPC Dashboard showing all components. Save as <code class="docutils literal notranslate"><span class="pre">mco1-vpc-diagram.png</span></code>.</p>
+</section>
+<hr class="docutils" />
+<section id="step-3-create-a-nat-gateway-week-4">
+<h3>Step 3 — Create a NAT Gateway (Week 4)<a class="headerlink" href="#step-3-create-a-nat-gateway-week-4" title="Link to this heading">#</a></h3>
+<p><strong>Task:</strong> Create a NAT Gateway in a public subnet so private instances can reach the internet (for updates).</p>
+<p><strong>Detailed instructions:</strong></p>
+<ol class="arabic simple">
+<li><p>Go to VPC → NAT Gateways → <strong>Create NAT Gateway</strong>.</p></li>
+<li><p>Subnet: select <code class="docutils literal notranslate"><span class="pre">gg-mco1-public-a</span></code>.</p></li>
+<li><p>Elastic IP: allocate a new Elastic IP (or use an existing one).</p></li>
+<li><p>Click <strong>Create NAT Gateway</strong>.</p></li>
+<li><p>Wait for the status to become <strong>available</strong> (takes ~2 minutes).</p></li>
+<li><p>Update the <strong>Private RT</strong> route table:</p>
+<ul class="simple">
+<li><p>Add route: <code class="docutils literal notranslate"><span class="pre">0.0.0.0/0</span></code> → <code class="docutils literal notranslate"><span class="pre">nat-ggmco1</span></code> (the NAT Gateway you just created).</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Verify:</strong> The private route table now has a route to the NAT Gateway.</p>
+<p><strong>Screenshot:</strong> Save as <code class="docutils literal notranslate"><span class="pre">mco1-nat-diagram.png</span></code>.</p>
+</section>
+<hr class="docutils" />
+<section id="step-4-create-security-groups-week-4">
+<h3>Step 4 — Create security groups (Week 4)<a class="headerlink" href="#step-4-create-security-groups-week-4" title="Link to this heading">#</a></h3>
+<p><strong>Task:</strong> Create security groups for the web tier and the database tier.</p>
+<p><strong>Detailed instructions:</strong></p>
+<ol class="arabic simple">
+<li><p>Go to EC2 → Security Groups → <strong>Create Security Group</strong>.</p></li>
+</ol>
+<p><strong>Web Tier SG (<code class="docutils literal notranslate"><span class="pre">gg-mco1-web-sg</span></code>):</strong></p>
+<ul class="simple">
+<li><p>VPC: <code class="docutils literal notranslate"><span class="pre">gg-mco1-vpc</span></code></p></li>
+<li><p>Name: <code class="docutils literal notranslate"><span class="pre">gg-mco1-web-sg</span></code></p></li>
+<li><p>Description: “Allow HTTP, HTTPS, and SSH from anywhere”</p></li>
+<li><p>Inbound rules:</p>
+<ul>
+<li><p>Type: HTTP, Protocol: TCP, Port: 80, Source: <code class="docutils literal notranslate"><span class="pre">0.0.0.0/0</span></code></p></li>
+<li><p>Type: HTTPS, Protocol: TCP, Port: 443, Source: <code class="docutils literal notranslate"><span class="pre">0.0.0.0/0</span></code></p></li>
+<li><p>Type: SSH, Protocol: TCP, Port: 22, Source: <code class="docutils literal notranslate"><span class="pre">Your-IP/32</span></code> (restrict to your IP)</p></li>
+</ul>
+</li>
+<li><p>Outbound rules: All traffic (default)</p></li>
+</ul>
+<p><strong>Database Tier SG (<code class="docutils literal notranslate"><span class="pre">gg-mco1-db-sg</span></code>):</strong></p>
+<ul class="simple">
+<li><p>VPC: <code class="docutils literal notranslate"><span class="pre">gg-mco1-vpc</span></code></p></li>
+<li><p>Name: <code class="docutils literal notranslate"><span class="pre">gg-mco1-db-sg</span></code></p></li>
+<li><p>Description: “Allow PostgreSQL from web tier only”</p></li>
+<li><p>Inbound rules:</p>
+<ul>
+<li><p>Type: PostgreSQL, Protocol: TCP, Port: 5432, Source: <code class="docutils literal notranslate"><span class="pre">gg-mco1-web-sg</span></code> (reference the web SG by ID)</p></li>
+</ul>
+</li>
+<li><p>Outbound rules: All traffic (default)</p></li>
+</ul>
+<p><strong>Verify:</strong> Both SGs are listed in EC2 → Security Groups with correct inbound rules.</p>
+<p><strong>Screenshot:</strong> Save as <code class="docutils literal notranslate"><span class="pre">mco1-sgs.png</span></code>.</p>
+</section>
+<hr class="docutils" />
+<section id="step-5-launch-ec2-instances-week-5-after-cf-module-4">
+<h3>Step 5 — Launch EC2 instances (Week 5, after CF Module 4)<a class="headerlink" href="#step-5-launch-ec2-instances-week-5-after-cf-module-4" title="Link to this heading">#</a></h3>
+<p><strong>Task:</strong> Launch two EC2 instances — one web server in the public subnet, and optionally one in the private subnet.</p>
+<p><strong>Detailed instructions:</strong></p>
+<ol class="arabic simple">
+<li><p>Go to EC2 → Instances → <strong>Launch Instance</strong>.</p></li>
+</ol>
+<p><strong>Web Server 1 (public):</strong></p>
+<ul class="simple">
+<li><p>Name: <code class="docutils literal notranslate"><span class="pre">gg-mco1-web-a</span></code></p></li>
+<li><p>AMI: Amazon Linux 2023 (or latest Amazon Linux 2)</p></li>
+<li><p>Instance type: <code class="docutils literal notranslate"><span class="pre">t3.micro</span></code> (Free Tier eligible)</p></li>
+<li><p>Key pair: select your existing key pair (or create a new one named <code class="docutils literal notranslate"><span class="pre">gg-mco1-key</span></code>)</p></li>
+<li><p>Network settings:</p>
+<ul>
+<li><p>VPC: <code class="docutils literal notranslate"><span class="pre">gg-mco1-vpc</span></code></p></li>
+<li><p>Subnet: <code class="docutils literal notranslate"><span class="pre">gg-mco1-public-a</span></code></p></li>
+<li><p>Auto-assign public IP: <strong>Enable</strong></p></li>
+<li><p>Security group: select <code class="docutils literal notranslate"><span class="pre">gg-mco1-web-sg</span></code></p></li>
+</ul>
+</li>
+<li><p>Storage: default (8 GB gp3)</p></li>
+<li><p>Click <strong>Launch Instance</strong></p></li>
+</ul>
+<p><strong>Web Server 2 (public):</strong></p>
+<ul class="simple">
+<li><p>Same settings as above, but:</p>
+<ul>
+<li><p>Name: <code class="docutils literal notranslate"><span class="pre">gg-mco1-web-b</span></code></p></li>
+<li><p>Subnet: <code class="docutils literal notranslate"><span class="pre">gg-mco1-public-b</span></code></p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Verify:</strong> Both instances are in <strong>running</strong> state. Note their public IP addresses.</p>
+<p><strong>Screenshot:</strong> Save as <code class="docutils literal notranslate"><span class="pre">mco1-ec2-instances.png</span></code>.</p>
+</section>
+<hr class="docutils" />
+<section id="step-6-configure-the-web-server-week-5">
+<h3>Step 6 — Configure the web server (Week 5)<a class="headerlink" href="#step-6-configure-the-web-server-week-5" title="Link to this heading">#</a></h3>
+<p><strong>Task:</strong> SSH into the web server and install nginx, then prove it serves a page.</p>
+<p><strong>Detailed instructions:</strong></p>
+<ol class="arabic">
+<li><p>SSH into Web Server 1:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh<span class="w"> </span>-i<span class="w"> </span>gg-mco1-key.pem<span class="w"> </span>ec2-user@&lt;WEB_SERVER_1_PUBLIC_IP&gt;
+</pre></div>
+</div>
+</li>
+<li><p>Install nginx:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>nginx
+</pre></div>
+</div>
+</li>
+<li><p>Create a simple index page:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>bash<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;cat &gt; /usr/share/nginx/html/index.html &lt;&lt;EOF</span>
+<span class="s1">&lt;html&gt;</span>
+<span class="s1">&lt;head&gt;&lt;title&gt;GreenGrid MCO1&lt;/title&gt;&lt;/head&gt;</span>
+<span class="s1">&lt;body&gt;</span>
+<span class="s1">&lt;h1&gt;GreenGrid Infrastructure — MCO1&lt;/h1&gt;</span>
+<span class="s1">&lt;p&gt;Server: gg-mco1-web-a&lt;/p&gt;</span>
+<span class="s1">&lt;p&gt;Status: operational&lt;/p&gt;</span>
+<span class="s1">&lt;/body&gt;</span>
+<span class="s1">&lt;/html&gt;&#39;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Start nginx:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>nginx
+</pre></div>
+</div>
+</li>
+<li><p>Test from your local browser:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//&lt;</span><span class="n">WEB_SERVER_1_PUBLIC_IP</span><span class="o">&gt;/</span>
+</pre></div>
+</div>
+<p>You should see the “GreenGrid Infrastructure — MCO1” page.</p>
+</li>
+</ol>
+<p><strong>Repeat</strong> for Web Server 2 (optional, for multi-AZ proof).</p>
+<p><strong>Verify:</strong> The page loads in your browser. The security group allows HTTP (port 80) from <code class="docutils literal notranslate"><span class="pre">0.0.0.0/0</span></code>.</p>
+<p><strong>Screenshot:</strong> Save the browser view as <code class="docutils literal notranslate"><span class="pre">mco1-web-page.png</span></code>.</p>
+</section>
+<hr class="docutils" />
+<section id="step-7-create-an-s3-bucket-week-5-after-cf-module-4">
+<h3>Step 7 — Create an S3 bucket (Week 5, after CF Module 4)<a class="headerlink" href="#step-7-create-an-s3-bucket-week-5-after-cf-module-4" title="Link to this heading">#</a></h3>
+<p><strong>Task:</strong> Create an S3 bucket for static assets and upload a test file.</p>
+<p><strong>Detailed instructions:</strong></p>
+<ol class="arabic">
+<li><p>Go to S3 → Create bucket:</p>
+<ul class="simple">
+<li><p>Bucket name: <code class="docutils literal notranslate"><span class="pre">gg-mco1-static-assets-&lt;your-account-id&gt;</span></code> (must be globally unique)</p></li>
+<li><p>Region: <code class="docutils literal notranslate"><span class="pre">ap-southeast-1</span></code></p></li>
+<li><p>Block Public Access: <strong>uncheck</strong> “Block all public access” (for static website hosting)</p></li>
+<li><p>Bucket versioning: <strong>Enable</strong></p></li>
+<li><p>Click <strong>Create bucket</strong></p></li>
+</ul>
+</li>
+<li><p>Upload a test file:</p>
+<ul>
+<li><p>Click on the bucket → <strong>Upload</strong> → <strong>Add files</strong></p></li>
+<li><p>Upload a file named <code class="docutils literal notranslate"><span class="pre">index.html</span></code> with content:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>GreenGrid Static Assets<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>This file is stored in S3 for the MCO1 deployment.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>Make the file publicly readable (for testing only — in production you’d use CloudFront or a presigned URL):</p>
+<ul class="simple">
+<li><p>Select the file → <strong>Actions</strong> → <strong>Make public</strong></p></li>
+</ul>
+</li>
+<li><p>Get the object URL and test it in your browser.</p></li>
+</ol>
+<p><strong>Verify:</strong> The <code class="docutils literal notranslate"><span class="pre">index.html</span></code> file is accessible via the S3 object URL.</p>
+<p><strong>Screenshot:</strong> Save as <code class="docutils literal notranslate"><span class="pre">mco1-s3-bucket.png</span></code>.</p>
+</section>
+<hr class="docutils" />
+<section id="step-8-provision-an-rds-instance-week-6-after-cf-module-6">
+<h3>Step 8 — Provision an RDS instance (Week 6, after CF Module 6)<a class="headerlink" href="#step-8-provision-an-rds-instance-week-6-after-cf-module-6" title="Link to this heading">#</a></h3>
+<p><strong>Task:</strong> Create a PostgreSQL RDS instance in the private subnet.</p>
+<p><strong>Detailed instructions:</strong></p>
+<ol class="arabic simple">
+<li><p>Go to RDS → Databases → <strong>Create database</strong>.</p></li>
+<li><p>Choose:</p>
+<ul class="simple">
+<li><p>Database creation method: <strong>Standard create</strong></p></li>
+<li><p>Engine: <strong>PostgreSQL</strong></p></li>
+<li><p>Version: latest PostgreSQL 15 or 16</p></li>
+<li><p>Templates: <strong>Free tier</strong></p></li>
+</ul>
+</li>
+<li><p>Settings:</p>
+<ul class="simple">
+<li><p>DB instance identifier: <code class="docutils literal notranslate"><span class="pre">gg-mco1-db</span></code></p></li>
+<li><p>Master username: <code class="docutils literal notranslate"><span class="pre">admin</span></code></p></li>
+<li><p>Master password: <code class="docutils literal notranslate"><span class="pre">Mco1Demo!2026</span></code> (use a strong password in practice)</p></li>
+<li><p>Confirm password: same</p></li>
+</ul>
+</li>
+<li><p>Instance size: <code class="docutils literal notranslate"><span class="pre">db.t3.micro</span></code> (Free Tier)</p></li>
+<li><p>Storage: 20 GB, GP3</p></li>
+<li><p>Connectivity:</p>
+<ul class="simple">
+<li><p>VPC: <code class="docutils literal notranslate"><span class="pre">gg-mco1-vpc</span></code></p></li>
+<li><p>Public access: <strong>No</strong> (this is a private database)</p></li>
+<li><p>Subnet group: create a new DB subnet group <code class="docutils literal notranslate"><span class="pre">gg-mco1-db-subnets</span></code> with both private subnets</p></li>
+<li><p>Security group: select <code class="docutils literal notranslate"><span class="pre">gg-mco1-db-sg</span></code></p></li>
+<li><p>Database port: 5432</p></li>
+</ul>
+</li>
+<li><p>Click <strong>Create database</strong>.</p></li>
+<li><p>Wait for the status to become <strong>available</strong> (~5 minutes).</p></li>
+</ol>
+<p><strong>Verify:</strong> The RDS instance is in the private subnet and has status “available”.</p>
+<p><strong>Screenshot:</strong> Save as <code class="docutils literal notranslate"><span class="pre">mco1-rds.png</span></code>.</p>
+</section>
+<hr class="docutils" />
+<section id="step-9-tag-all-resources-week-6">
+<h3>Step 9 — Tag all resources (Week 6)<a class="headerlink" href="#step-9-tag-all-resources-week-6" title="Link to this heading">#</a></h3>
+<p><strong>Task:</strong> Apply consistent tags to every resource you created.</p>
+<p><strong>Required tags for every resource:</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Project</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SAM10-MCO1</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Owner</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;your-name&gt;</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Environment</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">mco1-demo</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">CostCenter</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">CCS-AUF</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>How to tag:</strong></p>
+<ul class="simple">
+<li><p>EC2: select instance → <strong>Actions</strong> → <strong>Instance settings</strong> → <strong>Add/Edit tags</strong></p></li>
+<li><p>RDS: select DB → <strong>Modify</strong> → <strong>Add tags</strong></p></li>
+<li><p>S3: bucket → <strong>Properties</strong> → <strong>Tags</strong></p></li>
+<li><p>VPC/Subnets: VPC Dashboard → select resource → <strong>Tags</strong> tab → <strong>Manage tags</strong></p></li>
+</ul>
+<p><strong>Verify:</strong> All resources have the 4 required tags.</p>
+<p><strong>Screenshot:</strong> Save as <code class="docutils literal notranslate"><span class="pre">mco1-tags.png</span></code>.</p>
+</section>
+<hr class="docutils" />
+<section id="step-10-prove-the-environment-is-functional-secure-and-properly-configured-week-6">
+<h3>Step 10 — Prove the environment is functional, secure, and properly configured (Week 6)<a class="headerlink" href="#step-10-prove-the-environment-is-functional-secure-and-properly-configured-week-6" title="Link to this heading">#</a></h3>
+<p><strong>Task:</strong> Run a series of verification commands and document the results.</p>
+<p><strong>Functional proof:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Web server responds</span>
+curl<span class="w"> </span>-sS<span class="w"> </span>-o<span class="w"> </span>/dev/null<span class="w"> </span>-w<span class="w"> </span><span class="s2">&quot;HTTP %{http_code} in %{time_total}s\n&quot;</span><span class="w"> </span>http://&lt;WEB_SERVER_1_PUBLIC_IP&gt;/
+<span class="c1"># Expected: HTTP 200 in &lt;1s</span>
+
+<span class="c1"># 2. S3 bucket is accessible</span>
+aws<span class="w"> </span>s3<span class="w"> </span>ls<span class="w"> </span>s3://gg-mco1-static-assets-&lt;account-id&gt;/
+<span class="c1"># Expected: lists index.html</span>
+
+<span class="c1"># 3. RDS is reachable from the web server</span>
+ssh<span class="w"> </span>-i<span class="w"> </span>gg-mco1-key.pem<span class="w"> </span>ec2-user@&lt;WEB_SERVER_1_PUBLIC_IP&gt;
+sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>postgresql
+psql<span class="w"> </span>-h<span class="w"> </span>&lt;RDS_ENDPOINT&gt;<span class="w"> </span>-U<span class="w"> </span>admin<span class="w"> </span>-d<span class="w"> </span>postgres<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;SELECT version();&quot;</span>
+<span class="c1"># Expected: PostgreSQL version string</span>
+</pre></div>
+</div>
+<p><strong>Security proof:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Verify SGs only allow expected ports</span>
+aws<span class="w"> </span>ec2<span class="w"> </span>describe-security-groups<span class="w"> </span>--group-ids<span class="w"> </span>&lt;web-sg-id&gt;<span class="w"> </span>&lt;db-sg-id&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--query<span class="w"> </span><span class="s1">&#39;SecurityGroups[*].{Name:GroupName,Inbound:IpPermissions}&#39;</span>
+<span class="c1"># Expected: web-sg allows 80,443,22; db-sg allows 5432 only from web-sg</span>
+
+<span class="c1"># 2. Verify RDS is not publicly accessible</span>
+aws<span class="w"> </span>rds<span class="w"> </span>describe-db-instances<span class="w"> </span>--db-instance-identifier<span class="w"> </span>gg-mco1-db<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--query<span class="w"> </span><span class="s1">&#39;DBInstances[0].{PubliclyAccessible:PubliclyAccessible,Endpoint:Endpoint.Address}&#39;</span>
+<span class="c1"># Expected: PubliclyAccessible = false</span>
+</pre></div>
+</div>
+<p><strong>Configuration proof:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Verify all resources have required tags</span>
+aws<span class="w"> </span>ec2<span class="w"> </span>describe-tags<span class="w"> </span>--filters<span class="w"> </span><span class="s2">&quot;Name=value,Values=SAM10-MCO1&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--query<span class="w"> </span><span class="s1">&#39;Tags[*].{ResourceId:ResourceId,Key:Key,Value:Value}&#39;</span>
+<span class="c1"># Expected: all resource IDs listed with Project=SAM10-MCO1</span>
+</pre></div>
+</div>
+<p><strong>Deliverable:</strong> Save all verification outputs to <code class="docutils literal notranslate"><span class="pre">mco1-verification.txt</span></code>.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="mco1-documentation-template">
+<h2>MCO1 Documentation Template<a class="headerlink" href="#mco1-documentation-template" title="Link to this heading">#</a></h2>
+<section id="mco1-report-template">
+<h3>MCO1 Report Template<a class="headerlink" href="#mco1-report-template" title="Link to this heading">#</a></h3>
+<p>Replace the dummy content below with your real values.</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="gh"># MCO1 — AWS Infrastructure Deployment Report</span>
+
+<span class="gu">## Student Information</span>
+<span class="k">-</span><span class="w"> </span><span class="gs">**Name:**</span> Jane Doe
+<span class="k">-</span><span class="w"> </span><span class="gs">**Student ID:**</span> 12345678
+<span class="k">-</span><span class="w"> </span><span class="gs">**Course:**</span> SAM10 Systems Administration and Management | College of Computer Science | Angeles University Foundation | R.L.Natividad
+<span class="k">-</span><span class="w"> </span><span class="gs">**Date:**</span> 2026-08-04
+
+<span class="gu">## 1. Architecture Diagram</span>
+![<span class="nt">Architecture Diagram</span>](<span class="na">mco1-architecture.png</span>)
+
+<span class="gu">## 2. Component Inventory</span>
+
+| Component | AWS Resource | ID/Name | Region | AZ |
+| --- | --- | --- | --- | --- |
+| VPC | gg-mco1-vpc | vpc-0abc123 | ap-southeast-1 | — |
+| Public Subnet A | gg-mco1-public-a | subnet-0def456 | ap-southeast-1a | AZ-a |
+| Public Subnet B | gg-mco1-public-b | subnet-0ghi789 | ap-southeast-1b | AZ-b |
+| Private Subnet A | gg-mco1-private-a | subnet-0jkl012 | ap-southeast-1a | AZ-a |
+| Private Subnet B | gg-mco1-private-b | subnet-0mno345 | ap-southeast-1b | AZ-b |
+| Internet Gateway | gg-mco1-igw | igw-0pqr678 | ap-southeast-1 | — |
+| NAT Gateway | gg-mco1-nat | nat-0stu901 | ap-southeast-1a | AZ-a |
+| Web SG | gg-mco1-web-sg | sg-0vwx234 | — | — |
+| DB SG | gg-mco1-db-sg | sg-0yza567 | — | — |
+| Web Server A | gg-mco1-web-a | i-0bcd890 | ap-southeast-1a | AZ-a |
+| Web Server B | gg-mco1-web-b | i-0efg123 | ap-southeast-1b | AZ-b |
+| RDS PostgreSQL | gg-mco1-db | gg-mco1-db.xxxxx.ap-southeast-1.rds.amazonaws.com | ap-southeast-1 | Multi-AZ |
+| S3 Bucket | gg-mco1-static-assets | gg-mco1-static-assets-123456789 | ap-southeast-1 | — |
+
+<span class="gu">## 3. Security Configuration</span>
+
+<span class="gu">### Security Group Rules</span>
+<span class="gs">**Web Tier SG (`gg-mco1-web-sg`):**</span>
+| Type | Protocol | Port | Source | Purpose |
+| --- | --- | --- | --- | --- |
+| HTTP | TCP | 80 | 0.0.0.0/0 | Allow web traffic |
+| HTTPS | TCP | 443 | 0.0.0.0/0 | Allow secure web traffic |
+| SSH | TCP | 22 | &lt;your-IP&gt;/32 | Admin access only |
+
+<span class="gs">**DB Tier SG (`gg-mco1-db-sg`):**</span>
+| Type | Protocol | Port | Source | Purpose |
+| --- | --- | --- | --- | --- |
+| PostgreSQL | TCP | 5432 | sg-0vwx234 (web-sg) | DB access from web tier only |
+
+<span class="gu">### Least-Privilege Justification</span>
+The web tier SG allows HTTP/HTTPS from anywhere because it serves public web traffic. SSH is restricted to the student&#39;s IP address only. The DB tier SG allows PostgreSQL only from the web tier SG — no direct internet access to the database.
+
+<span class="gu">## 4. Functional Verification</span>
+
+<span class="gu">### Web Server</span>
+<span class="k">-</span><span class="w"> </span>URL: http://&lt;WEB_SERVER_1_PUBLIC_IP&gt;/
+<span class="k">-</span><span class="w"> </span>Status: HTTP 200 OK
+<span class="k">-</span><span class="w"> </span>Response time: &lt; 1 second
+<span class="k">-</span><span class="w"> </span>Screenshot: mco1-web-page.png
+
+<span class="gu">### S3 Bucket</span>
+<span class="k">-</span><span class="w"> </span>Bucket name: gg-mco1-static-assets-&lt;account-id&gt;
+<span class="k">-</span><span class="w"> </span>Test file: index.html (uploaded and publicly accessible)
+<span class="k">-</span><span class="w"> </span>Versioning: Enabled
+
+<span class="gu">### RDS Database</span>
+<span class="k">-</span><span class="w"> </span>Endpoint: gg-mco1-db.xxxxx.ap-southeast-1.rds.amazonaws.com
+<span class="k">-</span><span class="w"> </span>Engine: PostgreSQL 15/16
+<span class="k">-</span><span class="w"> </span>Publicly accessible: No (private subnet)
+<span class="k">-</span><span class="w"> </span>Connection test: <span class="sb">`psql -h &lt;endpoint&gt; -U admin -d postgres -c &quot;SELECT 1;&quot;`</span> → returns <span class="sb">`1`</span>
+
+<span class="gu">## 5. Tagging Compliance</span>
+
+All resources tagged with:
+<span class="k">-</span><span class="w"> </span>Project: SAM10-MCO1
+<span class="k">-</span><span class="w"> </span>Owner: Jane Doe
+<span class="k">-</span><span class="w"> </span>Environment: mco1-demo
+<span class="k">-</span><span class="w"> </span>CostCenter: CCS-AUF
+
+Tag compliance screenshot: mco1-tags.png
+
+<span class="gu">## 6. Lessons Learned</span>
+
+<span class="k">1.</span> What went well: (describe)
+<span class="k">2.</span> What was challenging: (describe)
+<span class="k">3.</span> What you would improve: (describe)
+<span class="k">4.</span> Security considerations for production: (describe)
+
+<span class="gu">## 7. Sources</span>
+<span class="k">-</span><span class="w"> </span>AWS VPC User Guide: https://docs.aws.amazon.com/vpc/latest/userguide/
+<span class="k">-</span><span class="w"> </span>AWS EC2 User Guide: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/
+<span class="k">-</span><span class="w"> </span>AWS RDS User Guide: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/
+<span class="k">-</span><span class="w"> </span>AWS S3 User Guide: https://docs.aws.amazon.com/AmazonS3/latest/userguide/
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="checkpoint-questions">
+<h2>Checkpoint Questions<a class="headerlink" href="#checkpoint-questions" title="Link to this heading">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Q1. Why does the private subnet need a NAT Gateway?</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text"><strong>Answer.</strong> Instances in private subnets have no direct internet route (no IGW). The NAT Gateway allows them to initiate outbound connections (e.g., for OS updates, package installs) while remaining unreachable from the internet inbound.</p>
+</div>
+</details><p>```{dropdown} Q2. Why restrict SSH to your IP (<code class="docutils literal notranslate"><span class="pre">&lt;your-IP&gt;/32</span></code>) instead of <code class="docutils literal notranslate"><span class="pre">0.0.0.0/0</span></code>?
+<strong>Answer.</strong> SSH on port 22 is a prime target for brute-force attacks. Restricting to your IP means only you can SSH in — no one else on the internet can attempt login.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>```{dropdown} Q3. Why is the RDS instance in a private subnet and not publicly accessible?
+**Answer.** Databases contain sensitive data. A public RDS instance is exposed to the internet and is a common attack vector. Keeping it private means only resources within the VPC (the web tier SG) can reach it.
+</pre></div>
+</div>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Q4. What is the difference between a route table and a security group?</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text"><strong>Answer.</strong> A <strong>route table</strong> controls <em>where traffic can go</em> (network-level routing — e.g., 0.0.0.0/0 → IGW). A <strong>security group</strong> controls <em>who can reach a resource</em> (instance-level firewall — e.g., allow port 80 from 0.0.0.0/0). They operate at different layers.</p>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Q5. Why enable S3 bucket versioning?</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text"><strong>Answer.</strong> Versioning protects against accidental deletion or overwrites. If an object is deleted or modified, previous versions are retained and can be restored — providing an additional safety net beyond the 11 nines of S3 durability.</p>
+</div>
+</details></section>
+<hr class="docutils" />
+<section id="sources">
+<h2>Sources<a class="headerlink" href="#sources" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>AWS Well-Architected Framework — Security Pillar: <a class="reference external" href="https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/">https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/</a></p></li>
+<li><p>AWS VPC User Guide: <a class="reference external" href="https://docs.aws.amazon.com/vpc/latest/userguide/">https://docs.aws.amazon.com/vpc/latest/userguide/</a></p></li>
+<li><p>AWS EC2 User Guide: <a class="reference external" href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/">https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/</a></p></li>
+<li><p>AWS RDS User Guide: <a class="reference external" href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/">https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/</a></p></li>
+<li><p>AWS S3 User Guide: <a class="reference external" href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/">https://docs.aws.amazon.com/AmazonS3/latest/userguide/</a></p></li>
+<li><p>AWS Security Best Practices: <a class="reference external" href="https://docs.aws.amazon.com/prescriptive-guidance/latest/security-best-practices/">https://docs.aws.amazon.com/prescriptive-guidance/latest/security-best-practices/</a></p></li>
+<li><p>Module 3 (Security), Module 4 (Compute &amp; Storage), Module 5 (Networking), Module 6 (Databases) — AWS Skill Builder “AWS Cloud Practitioner Essentials”</p></li>
+</ul>
+<footer class="sam10-footer" style="margin-top:3em;text-align:center;color:#666;font-size:0.85em">
+  <hr>
+  <span>SAM10 Systems Administration and Management | College of Computer Science | Angeles University Foundation | R.L.Natividad</span> &mdash;
+  <span>Systems Administration and Maintenance</span> &mdash;
+  <span>Undergraduate course companion</span>
+</footer></section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="labs/lab15.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Lab 15 — Module 15: Automation &amp; DevOps</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="MCO2_Systems_Administration_Maintenance.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">MCO2 — Systems Administration and Maintenance</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-outcomes">Learning outcomes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-instruction-guide">Step-by-step instruction guide</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-architecture-design-week-3-after-cf-module-4">Step 1 — Architecture design (Week 3, after CF Module 4)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-create-the-vpc-and-networking-week-4-after-cf-module-5">Step 2 — Create the VPC and networking (Week 4, after CF Module 5)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-create-a-nat-gateway-week-4">Step 3 — Create a NAT Gateway (Week 4)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-create-security-groups-week-4">Step 4 — Create security groups (Week 4)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-launch-ec2-instances-week-5-after-cf-module-4">Step 5 — Launch EC2 instances (Week 5, after CF Module 4)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-6-configure-the-web-server-week-5">Step 6 — Configure the web server (Week 5)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-7-create-an-s3-bucket-week-5-after-cf-module-4">Step 7 — Create an S3 bucket (Week 5, after CF Module 4)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-8-provision-an-rds-instance-week-6-after-cf-module-6">Step 8 — Provision an RDS instance (Week 6, after CF Module 6)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-9-tag-all-resources-week-6">Step 9 — Tag all resources (Week 6)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-10-prove-the-environment-is-functional-secure-and-properly-configured-week-6">Step 10 — Prove the environment is functional, secure, and properly configured (Week 6)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mco1-documentation-template">MCO1 Documentation Template</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mco1-report-template">MCO1 Report Template</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checkpoint-questions">Checkpoint Questions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sources">Sources</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By SAM10 Systems Administration and Management | College of Computer Science | Angeles University Foundation | R.L.Natividad
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

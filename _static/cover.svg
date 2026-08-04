@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
+  <rect width="400" height="400" fill="#2c3e50"/>
+  <circle cx="200" cy="170" r="90" fill="#5b9bd5" opacity="0.25"/>
+  <circle cx="200" cy="170" r="60" fill="#ffffff"/>
+  <text x="200" y="185" text-anchor="middle" font-family="DejaVu Sans" font-size="16" fill="#2c3e50">SAM 10</text>
+  <text x="200" y="300" text-anchor="middle" font-family="DejaVu Sans" font-size="22" fill="#ffffff">Systems Administration</text>
+  <text x="200" y="330" text-anchor="middle" font-family="DejaVu Sans" font-size="22" fill="#ffffff">&amp; Maintenance</text>
+  <text x="200" y="360" text-anchor="middle" font-family="DejaVu Sans" font-size="13" fill="#ffc000">Course Companion</text>
+</svg>
